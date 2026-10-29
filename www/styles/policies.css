@@ -11,3 +11,37 @@
 .sort-options button { padding: 7px 10px; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); background: #fff; font-size: 11px; font-weight: 700; cursor: pointer; }
 .sort-options button.active { border-color: var(--primary); color: var(--primary-text); background: var(--primary-soft); }
 .policy-results { margin-top: 14px; }
+
+/* 카테고리 칩: 7개라 가로 스크롤 */
+.chips.policy-filters { display: flex; overflow-x: auto; scrollbar-width: none; }
+.chips.policy-filters::-webkit-scrollbar { display: none; }
+.chips.policy-filters .chip { flex: 0 0 auto; padding-inline: 15px; }
+
+/* 카테고리별 태그 색 */
+.tag.house { color: #8a5a1f; background: #fcefdc; }
+.tag.edu { color: #4d6a8f; background: #e8eff8; }
+.tag.job { color: #5d6b2e; background: #eef2dc; }
+.tag.health { color: #9a4b5c; background: #fbe9ec; }
+
+/* 공식 페이지 바로가기 */
+.policy-link { display: flex; align-items: center; justify-content: center; gap: 4px; margin-top: 12px; height: 40px; border-radius: 13px; color: var(--on-primary); background: var(--primary); font-size: 12.5px; font-weight: 800; text-decoration: none; }
+.policy-link .material-symbols-rounded { font-size: 16px; }
+.policy-link:active { transform: scale(.98); }
+
+/* 자세히 보기 */
+.policy-details { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); }
+.policy-details summary { display: inline-flex; align-items: center; gap: 2px; color: var(--primary-text); font-size: 12.5px; font-weight: 800; cursor: pointer; list-style: none; }
+.policy-details summary::-webkit-details-marker { display: none; }
+.policy-details summary .material-symbols-rounded { font-size: 18px; transition: transform .18s ease; }
+.policy-details[open] summary .material-symbols-rounded { transform: rotate(180deg); }
+.policy-details ul { margin: 10px 0 0; padding-left: 17px; color: var(--text); font-size: 12.5px; line-height: 1.65; }
+.policy-details li + li { margin-top: 4px; }
+.policy-details-foot { margin-top: 10px; }
+.policy-details-foot small { color: var(--muted); font-size: 10.5px; line-height: 1.4; }
+
+/* 저장한 정책 */
+.saved-empty { display: grid; justify-items: center; gap: 10px; padding: 34px 20px; text-align: center; }
+.saved-empty > .material-symbols-rounded { font-size: 34px; color: var(--primary-text); }
+.saved-empty p { margin: 0; color: var(--muted); line-height: 1.6; }
+.menu-count { margin-left: auto; margin-right: 4px; padding: 2px 8px; border-radius: 999px; color: var(--on-primary); background: var(--primary); font-size: 11px; }
+.menu-count + .material-symbols-rounded:last-child { margin-left: 0 !important; }

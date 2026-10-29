@@ -1,0 +1,25 @@
+const views = {
+  home: homeView,
+  policies: policiesView,
+  recommend: recommendView,
+  living: livingView,
+  "living-settings": livingSettingsView,
+  "support-status": supportStatusView,
+  community: communityView,
+  post: postView,
+  jobs: jobsView,
+  chat: chatView,
+  write: writeView,
+  profile: profileView,
+  login: loginView,
+  "forgot-password": forgotPasswordView,
+  "reset-password": resetPasswordView,
+  signup: signupView,
+  welcome: welcomeView,
+  onboarding: onboardingView,
+  notifications: notificationsView,
+  "notification-settings": notificationSettingsView,
+  "saved-policies": savedPoliciesView,
+};
+
+

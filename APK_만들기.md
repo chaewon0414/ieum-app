@@ -18,3 +18,11 @@
 - 이 APK는 테스트용(debug)입니다. Play 스토어에 올리려면 서명된 release 빌드가 따로 필요합니다.
 - `www/assets` 안의 이미지 중 실제로 쓰는 건 welcome-city-no-bg-dots.png 하나입니다.
   나머지(약 22MB)를 지우면 APK 용량이 크게 줄어듭니다.
+
+## 코드 구조 (src → www)
+- `src/js/` : 화면 원본 코드(파일별). 여기서 고칩니다.
+- `www/js/app.bundle.js` : 앱이 실제로 읽는 파일. 원본을 고친 뒤 아래 명령으로 다시 만듭니다.
+  `python3 tools/build-bundle.py src www`
+- `config.js`의 Supabase 주소·키가 비어 있으면 **오프라인 모드**로 동작합니다.
+  계정, 게시글, 댓글, 좋아요, 저장한 정책이 휴대폰 안에만 저장되고, AI 상담은 앱 안의 정책으로 간단히 안내합니다.
+  주소·키를 넣으면 다시 Supabase 서버를 사용합니다.

@@ -30,3 +30,4 @@
 .write-form textarea { min-height: 150px; }
 .write-form input:focus, .write-form select:focus, .write-form textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
 .write-form .secondary-button { border: 0; color: #fff; background: var(--secondary); }
+.chat-bubble { white-space: pre-wrap; word-break: keep-all; overflow-wrap: anywhere; }

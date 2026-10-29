@@ -3,10 +3,20 @@
 const APP_DATA = {
   user: { name: "지원", region: "서울시 관악구", age: 25 },
   policies: [
-    { category: "생활", title: "청년 자립수당", desc: "보호종료 청년의 안정적인 자립을 위해 매월 생활비를 지원해요.", amount: "월 50만 원", deadline: "상시 신청", match: 98 },
-    { category: "주거", title: "청년 월세 특별지원", desc: "주거비 부담을 덜 수 있도록 월세를 최대 12개월간 지원해요.", amount: "월 최대 20만 원", deadline: "8월 31일까지", match: 94 },
-    { category: "금융", title: "청년도약계좌", desc: "꾸준히 저축하면 정부 기여금과 비과세 혜택을 받을 수 있어요.", amount: "5년 만기", deadline: "매월 신청", match: 89 },
-    { category: "취업", title: "국민취업지원제도", desc: "취업 상담부터 직업훈련, 구직촉진수당까지 맞춤 지원해요.", amount: "월 최대 50만 원", deadline: "상시 신청", match: 86 }
+    {"id": "seed-jarip-sudang", "category": "생활", "title": "자립수당", "desc": "보호가 끝난 뒤 5년 동안 매달 생활비를 받을 수 있어요. 보호종료일 기준으로 2년 이상 연속 보호받았다면 대상이에요.", "content": "대상: 아동복지시설·가정위탁 보호가 끝난 자립준비청년 중 보호종료일 기준 과거 2년 이상 연속 보호받은 사람\n지원: 월 50만 원, 보호종료 후 5년간\n신청: 주소지 행정복지센터 또는 복지로 온라인 신청\n문의: 보건복지부 청년정책팀 044-202-3361", "amount": "월 50만 원", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://www.bokjiro.go.kr", "source": "보건복지부 자립준비청년 자립지원 안내", "match": 98},
+    {"id": "seed-jarip-jeongchakgeum", "category": "생활", "title": "자립정착금", "desc": "보호가 끝날 때 시·도에서 한 번에 받는 정착 지원금이에요. 사는 지역에 따라 금액이 달라요.", "content": "대상: 만 18세 이후 보호가 끝난 자립준비청년\n지원(2025년 기준): 서울 2,000만 원 / 대전·경기·제주·경남 1,500만 원 / 부산 1,200만 원 / 그 외 지역 1,000만 원\n신청: 아동복지시설 또는 가정위탁지원센터와 사용계획서를 작성한 뒤 관할 행정복지센터에 신청\n금액은 해마다 바뀔 수 있으니 관할 시·군·구 공고를 꼭 확인하세요.", "amount": "1,000만~2,000만 원", "deadline": "상시 신청", "region": "시·도별", "applicationUrl": "https://www.mohw.go.kr/menu.es?mid=a10711041000", "source": "보건복지부 자립준비청년 자립지원 안내", "match": 96},
+    {"id": "seed-gichosaenghwal-gongje", "category": "생활", "title": "기초생활보장 근로소득 공제", "desc": "기초생활수급을 받으면서 일해도 소득 일부를 빼고 계산해 줘서, 일을 시작해도 급여가 크게 줄지 않아요.", "content": "대상: 기초생활보장 수급 자립준비청년(생계급여 수급 자격 완화 포함)\n지원: 소득 조사 때 근로·사업소득에서 60만 원 + 나머지 소득의 30%를 공제, 보호종료 후 5년간\n신청: 주소지 행정복지센터", "amount": "월 60만 원 + 30% 공제", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://www.mohw.go.kr/menu.es?mid=a10711041000", "source": "보건복지부 자립준비청년 자립지원 안내", "match": 88},
+    {"id": "seed-jarip-sarye", "category": "생활", "title": "자립지원 통합서비스(사례관리)", "desc": "시·도 자립지원전담기관 담당자가 주거, 돈 관리, 진로, 건강 고민을 함께 살피고 필요한 지원을 연결해 줘요.", "content": "대상: 보호종료 5년 이내 자립준비청년, 보호연장아동\n지원: 1:1 맞춤형 사례관리, 필요한 서비스 연계\n신청: 거주 지역 시·도 자립지원전담기관", "amount": "1:1 맞춤 상담", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://jaripon.ncrc.or.kr", "source": "보건복지부 자립준비청년 자립지원 안내", "match": 90},
+    {"id": "seed-baramgaebi", "category": "생활", "title": "바람개비서포터즈·자조모임", "desc": "먼저 자립한 선배들과 만나고, 비슷한 경험을 가진 청년들끼리 모임을 만들면 활동비를 지원받을 수 있어요.", "content": "대상: 만 29세 이하 보호연장아동 및 자립준비청년\n지원: 자립 멘토 활동(바람개비서포터즈), 자조모임 운영과 활동비\n신청: 거주 지역 시·도 자립지원전담기관", "amount": "모임 활동비", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://jaripon.ncrc.or.kr", "source": "보건복지부 자립준비청년 자립지원 안내", "match": 80},
+    {"id": "seed-lh-sonyeon-jeonse", "category": "주거", "title": "소년소녀가정 등 전세임대", "desc": "LH가 전셋집을 빌려 저렴하게 다시 빌려줘요. 22세까지는 무상이고, 보호종료 후 5년간 이자를 절반 깎아줘요.", "content": "대상: 자립준비청년, 청소년복지시설 퇴소청소년 등 무주택자(보호종료아동은 소득 기준 미적용)\n지원: 22세 이하 무상 지원, 보호종료 후 5년 이내 대출이율 50% 감면\n신청: 주소지 읍·면·동 주민센터\n문의: LH 전세임대콜센터 1670-0002", "amount": "22세까지 무상", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://apply.lh.or.kr", "source": "복지로 2025 복지서비스 안내책자(청년층)", "match": 95},
+    {"id": "seed-lh-jarip-jeonse", "category": "주거", "title": "자립준비청년 전세임대(청년 전세임대 우선공급)", "desc": "청년 전세임대 물량 중 자립준비청년에게 먼저 공급해요. 지금 사는 곳과 상관없이 전국 주택에 신청할 수 있어요.", "content": "대상: 가정위탁 종료 또는 아동복지시설 퇴소 5년 이내인 사람, 보호연장아동\n지원: 지원한도액 수도권 1억 2,000만 원(청년 유형과 동일), 최장 6년 거주(조건 충족 시 최장 20년)\n신청: LH 청약플러스 공고 확인", "amount": "수도권 최대 1억 2천만 원", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://apply.lh.or.kr", "source": "문화일보 LH 청년 전세임대 모집 기사", "match": 93},
+    {"id": "seed-busan-maeip", "category": "주거", "title": "부산도시공사 자립준비청년 매입임대주택", "desc": "보증금 100만 원, 월세는 시세의 20% 수준으로 살 수 있는 집이에요. 모집 세대가 다 찰 때까지 수시로 접수해요.", "content": "대상: 아동복지시설 퇴소 5년 이내 무주택자(공고일 기준 공사 매입임대주택에 살고 있지 않은 사람)\n지원: 임대보증금 100만 원, 월 임대료 시세 20% 수준, 최초 2년(재계약 시 최장 10년, 소득·자산 기준 충족 시 최장 20년)\n신청: 부산도시공사 누리집 공고문 확인", "amount": "보증금 100만 원", "deadline": "모집 마감 시까지", "region": "부산", "applicationUrl": "https://www.bmc.busan.kr", "source": "파이낸셜뉴스 2026.7.22 부산도시공사 수시모집 기사", "match": 84},
+    {"id": "seed-didim-ssiat", "category": "금융", "title": "디딤씨앗통장", "desc": "보호받는 동안 저축하면 나라가 2배를 더 넣어줘요. 모은 돈은 18세 이후 자립 초기 비용으로 받아요.", "content": "대상: 0세~만 18세 미만 보호대상아동\n지원: 매월 저축액을 국가(지자체)가 1:2로 매칭, 정부지원금 월 10만 원 한도\n지급: 18세 이후 사회진출 초기 비용으로 사용\n자세한 내용: 아동권리보장원 누리집", "amount": "월 최대 10만 원 매칭", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://www.ncrc.or.kr", "source": "보건복지부 자립준비청년 자립지원 안내", "match": 85},
+    {"id": "seed-kosaf-loan-interest", "category": "금융", "title": "학자금대출 생활비 이자 면제", "desc": "대학생이 취업 후 상환 학자금대출로 생활비를 빌리면, 갚기 시작하기 전까지 이자를 내지 않아도 돼요.", "content": "대상: 취업 후 상환 학자금대출을 받는 자립준비청년(보호아동 포함) 학부생, 만 35세 이하\n지원: 의무상환 개시 전까지 생활비 대출 이자 면제\n신청: 한국장학재단 누리집 또는 모바일 앱\n문의: 한국장학재단 1599-2000", "amount": "생활비 대출 이자 0원", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://www.kosaf.go.kr", "source": "복지로 2025 복지서비스 안내책자(청년층)", "match": 82},
+    {"id": "seed-kosaf-scholarship", "category": "교육", "title": "국가장학금 성적기준 미적용", "desc": "자립준비청년은 국가장학금 Ⅰ유형을 받을 때 성적 기준을 보지 않아요. 학자금지원 9구간 이하면 신청할 수 있어요.", "content": "대상: 국내 대학 재학생 중 학자금지원 9구간 이하\n특례: 자립준비청년은 Ⅰ유형·다자녀 국가장학금 성적 기준 미적용\n신청: 한국장학재단 누리집 및 모바일 앱(학기별 신청 기간 확인)\n문의: 한국장학재단 1599-2000", "amount": "등록금 지원", "deadline": "학기별 신청 기간", "region": "전국", "applicationUrl": "https://www.kosaf.go.kr", "source": "복지로 2025 복지서비스 안내책자(청년층)", "match": 87},
+    {"id": "seed-medical-copay", "category": "건강", "title": "자립준비청년 의료비 지원", "desc": "건강보험으로 병원에 갈 때 내는 본인부담금을 의료급여 수준으로 줄여줘요.", "content": "대상: 건강보험에 가입한 자립준비청년\n지원: 요양급여비용 본인일부부담금 경감(의료급여와 비슷한 수준)\n문의: 보건복지부 청년정책팀 044-202-3361", "amount": "병원비 본인부담 경감", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://www.mohw.go.kr/menu.es?mid=a10711041000", "source": "보건복지부 자립준비청년 자립지원 안내", "match": 91},
+    {"id": "seed-maeum-tuja", "category": "건강", "title": "마음투자 심리상담 본인부담 면제", "desc": "전국민 마음투자 지원사업으로 심리상담을 받을 때 자립준비청년은 본인부담금 없이 이용할 수 있어요.", "content": "대상: 자립준비청년, 보호연장아동\n지원: 전국민 마음투자 지원사업 참여 시 본인부담금 제외\n신청: 복지로 온라인 신청", "amount": "상담비 본인부담 0원", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://www.bokjiro.go.kr", "source": "보건복지부 자립준비청년 자립지원 안내", "match": 86},
+    {"id": "seed-kuksi-chwieop", "category": "취업", "title": "국민취업지원제도", "desc": "취업 상담, 직업훈련, 일자리 소개를 받고 조건이 맞으면 구직촉진수당도 받을 수 있어요. 청년 누구나 확인해 볼 만한 제도예요.", "content": "대상: 취업을 원하는 청년 등(유형별 소득·재산 기준 있음)\n지원: 취업지원 서비스, 1유형은 구직촉진수당(6개월)\n신청: 고용24 또는 가까운 고용센터\n자립준비청년 전용 제도는 아니니 자격은 고용24에서 확인하세요.", "amount": "구직촉진수당 + 취업지원", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://www.work24.go.kr", "source": "고용노동부 고용24", "match": 83}
   ],
   jobs: [
     { company: "카카오", title: "서비스 기획 어시스턴트 모집", tags: ["신입", "판교", "기획"], deadline: "D-12" },
@@ -31,13 +41,15 @@ APP_DATA.posts[1].commentList = [
 // Source: js/api/supabase-client.js
 let supabaseClient = null;
 
+let localClient = null;
+
+// 서버(Supabase) 또는 오프라인 저장소 중 하나는 항상 쓸 수 있어요.
 function isSupabaseConfigured() {
-  const config = window.IEUM_CONFIG || {};
-  return Boolean(config.SUPABASE_URL && config.SUPABASE_PUBLISHABLE_KEY);
+  return true;
 }
 
 function getSupabaseClient() {
-  if (!isSupabaseConfigured()) return null;
+  if (isLocalMode()) return (localClient ||= createLocalClient());
   if (!window.supabase) throw new Error("Supabase 라이브러리를 불러오지 못했습니다.");
 
   if (!supabaseClient) {
@@ -48,6 +60,195 @@ function getSupabaseClient() {
 }
 
 
+// Source: js/api/local-backend.js
+// 오프라인 모드: config.js에 Supabase 주소가 비어 있으면 휴대폰(브라우저) 안에 데이터를 저장합니다.
+// supabase-js에서 이 앱이 쓰는 기능(auth, from().select/insert/update/upsert/delete, functions.invoke)만 흉내 냅니다.
+const LOCAL_DB_KEY = "ieum-local-db";
+const LOCAL_SESSION_KEY = "ieum-local-session";
+
+function isLocalMode() {
+  const config = window.IEUM_CONFIG || {};
+  return !(config.SUPABASE_URL && config.SUPABASE_PUBLISHABLE_KEY);
+}
+
+const localId = () => (window.crypto?.randomUUID ? crypto.randomUUID() : `local-${Date.now()}-${Math.random().toString(16).slice(2)}`);
+const localHash = (text) => { let h = 5381; for (const c of String(text)) h = ((h << 5) + h + c.charCodeAt(0)) >>> 0; return `h${h.toString(16)}`; };
+
+function readLocalDb() {
+  let db = null;
+  try { db = JSON.parse(localStorage.getItem(LOCAL_DB_KEY)); } catch {}
+  if (!db || typeof db !== "object") db = {};
+  db.users ||= [];
+  db.tables ||= {};
+  if (!db.seededCommunity) {
+    // 처음 실행할 때 샘플 게시글을 로컬 커뮤니티에 넣어 둡니다.
+    const posts = db.tables.community_posts ||= [];
+    const comments = db.tables.community_comments ||= [];
+    const minutesAgo = (text) => { const n = parseInt(text, 10) || 5; return text.includes("시간") ? n * 60 : text.includes("일") ? n * 1440 : n; };
+    (APP_DATA.posts || []).forEach((post, index) => {
+      const id = `seed-post-${index}`;
+      const created = Date.now() - minutesAgo(post.time || "") * 60000;
+      posts.push({ id, author_id: "seed", author_name: post.author, category: post.category, title: post.title, body: post.body, image_url: post.image || null, status: "published", created_at: new Date(created).toISOString() });
+      (post.commentList || []).forEach((comment, commentIndex) => {
+        comments.push({ id: `${id}-c${commentIndex}`, post_id: id, parent_id: null, author_id: "seed", author_name: comment.author, body: comment.body, status: "published", created_at: new Date(created + (commentIndex + 1) * 60000).toISOString() });
+      });
+    });
+    db.seededCommunity = true;
+    writeLocalDb(db);
+  }
+  return db;
+}
+
+function writeLocalDb(db) {
+  try { localStorage.setItem(LOCAL_DB_KEY, JSON.stringify(db)); }
+  catch (error) { console.error("로컬 저장 실패", error); throw new Error("휴대폰 저장 공간에 저장하지 못했어요."); }
+}
+
+const publicUser = (user) => user && ({ id: user.id, email: user.email, user_metadata: { ...(user.user_metadata || {}) }, created_at: user.created_at });
+
+class LocalQuery {
+  constructor(table) { this.table = table; this.filters = []; this.action = "select"; this.payload = null; this.orderBy = null; this.max = null; this.mode = "many"; this.conflict = null; }
+  select() { if (this.action === "select") this.action = "select"; this.returning = true; return this; }
+  eq(column, value) { this.filters.push([column, value]); return this; }
+  order(column, { ascending = true } = {}) { this.orderBy = { column, ascending }; return this; }
+  limit(count) { this.max = count; return this; }
+  single() { this.mode = "single"; return this; }
+  maybeSingle() { this.mode = "maybe"; return this; }
+  insert(rows) { this.action = "insert"; this.payload = rows; return this; }
+  update(patch) { this.action = "update"; this.payload = patch; return this; }
+  upsert(rows, { onConflict = "id" } = {}) { this.action = "upsert"; this.payload = rows; this.conflict = onConflict.split(",").map((c) => c.trim()); return this; }
+  delete() { this.action = "delete"; return this; }
+  matches(row) { return this.filters.every(([column, value]) => row[column] === value); }
+  run() {
+    const db = readLocalDb();
+    const rows = db.tables[this.table] ||= [];
+    const now = new Date().toISOString();
+    let result = [];
+    if (this.action === "select") result = rows.filter((row) => this.matches(row));
+    if (this.action === "insert") {
+      result = [].concat(this.payload).map((row) => ({ id: localId(), created_at: now, ...row }));
+      rows.push(...result);
+    }
+    if (this.action === "update") {
+      result = rows.filter((row) => this.matches(row));
+      result.forEach((row) => Object.assign(row, this.payload));
+    }
+    if (this.action === "upsert") {
+      result = [].concat(this.payload).map((item) => {
+        const existing = rows.find((row) => this.conflict.every((column) => row[column] === item[column]));
+        if (existing) return Object.assign(existing, item);
+        const created = { id: localId(), created_at: now, ...item };
+        rows.push(created);
+        return created;
+      });
+    }
+    if (this.action === "delete") {
+      result = rows.filter((row) => this.matches(row));
+      db.tables[this.table] = rows.filter((row) => !this.matches(row));
+    }
+    if (this.action !== "select") writeLocalDb(db);
+    if (this.orderBy) {
+      const { column, ascending } = this.orderBy;
+      result = [...result].sort((a, b) => (a[column] > b[column] ? 1 : a[column] < b[column] ? -1 : 0) * (ascending ? 1 : -1));
+    }
+    if (this.max !== null) result = result.slice(0, this.max);
+    result = JSON.parse(JSON.stringify(result));
+    if (this.mode === "single") return result[0] ? { data: result[0], error: null } : { data: null, error: new Error("저장된 데이터를 찾지 못했어요.") };
+    if (this.mode === "maybe") return { data: result[0] || null, error: null };
+    return { data: result, error: null };
+  }
+  then(resolve, reject) { try { return Promise.resolve(this.run()).then(resolve, reject); } catch (error) { return Promise.resolve({ data: null, error }).then(resolve, reject); } }
+}
+
+const localAuthListeners = new Set();
+const currentLocalSession = () => {
+  let session = null;
+  try { session = JSON.parse(localStorage.getItem(LOCAL_SESSION_KEY)); } catch {}
+  if (!session?.user?.id) return null;
+  const user = readLocalDb().users.find((item) => item.id === session.user.id);
+  return user ? { access_token: "local", user: publicUser(user) } : null;
+};
+const setLocalSession = (user, event) => {
+  const session = user ? { access_token: "local", user: publicUser(user) } : null;
+  if (session) localStorage.setItem(LOCAL_SESSION_KEY, JSON.stringify(session));
+  else localStorage.removeItem(LOCAL_SESSION_KEY);
+  localAuthListeners.forEach((callback) => setTimeout(() => callback(event, session), 0));
+  return session;
+};
+
+function createLocalClient() {
+  return {
+    from: (table) => new LocalQuery(table),
+    auth: {
+      async signUp({ email, password, options }) {
+        const db = readLocalDb();
+        const normalized = String(email).trim().toLowerCase();
+        if (db.users.some((user) => user.email === normalized)) return { data: {}, error: new Error("User already registered") };
+        if (String(password).length < 6) return { data: {}, error: new Error("Password should be at least 6 characters") };
+        const user = { id: localId(), email: normalized, password: localHash(password), user_metadata: { ...(options?.data || {}) }, created_at: new Date().toISOString() };
+        db.users.push(user);
+        (db.tables.profiles ||= []).push({ id: user.id, display_name: options?.data?.display_name || null, region: null, birth_year: null, avatar_url: null });
+        writeLocalDb(db);
+        const session = setLocalSession(user, "SIGNED_IN");
+        return { data: { user: session.user, session }, error: null };
+      },
+      async signInWithPassword({ email, password }) {
+        const user = readLocalDb().users.find((item) => item.email === String(email).trim().toLowerCase());
+        if (!user || user.password !== localHash(password)) return { data: {}, error: new Error("Invalid login credentials") };
+        const session = setLocalSession(user, "SIGNED_IN");
+        return { data: { user: session.user, session }, error: null };
+      },
+      async getSession() { return { data: { session: currentLocalSession() }, error: null }; },
+      async getUser() { const session = currentLocalSession(); return { data: { user: session?.user || null }, error: session ? null : new Error("로그인이 필요합니다.") }; },
+      async signOut() { setLocalSession(null, "SIGNED_OUT"); return { error: null }; },
+      async updateUser({ data, password }) {
+        const session = currentLocalSession();
+        if (!session) return { data: {}, error: new Error("로그인이 필요합니다.") };
+        const db = readLocalDb();
+        const user = db.users.find((item) => item.id === session.user.id);
+        if (data) user.user_metadata = { ...user.user_metadata, ...data };
+        if (password) user.password = localHash(password);
+        writeLocalDb(db);
+        setLocalSession(user, "USER_UPDATED");
+        return { data: { user: publicUser(user) }, error: null };
+      },
+      onAuthStateChange(callback) { localAuthListeners.add(callback); return { data: { subscription: { unsubscribe: () => localAuthListeners.delete(callback) } } }; },
+      async resetPasswordForEmail() { return { error: new Error("오프라인 모드에서는 비밀번호 재설정 메일을 보낼 수 없어요.") }; },
+      async signInWithOAuth() { return { data: null, error: new Error("오프라인 모드에서는 Google 로그인을 사용할 수 없어요. 이메일로 가입해주세요.") }; }
+    },
+    functions: {
+      async invoke(name, { body } = {}) {
+        if (name !== "ai-chat") return { data: null, error: new Error("오프라인 모드에서 지원하지 않는 기능이에요.") };
+        return { data: { answer: localChatAnswer(body?.messages || [], body?.userName) }, error: null };
+      }
+    }
+  };
+}
+
+// 오프라인 AI 상담: 질문 단어로 정책을 찾아 이름을 불러 안내합니다.
+function localChatAnswer(messages, userName) {
+  const name = userName || "이음 사용자";
+  const question = [...messages].reverse().find((message) => message.type === "user")?.text || "";
+  const topics = [
+    ["주거", ["집", "주거", "월세", "전세", "임대", "방", "이사", "보증금"]],
+    ["생활", ["생활비", "수당", "정착금", "돈", "생계", "용돈"]],
+    ["금융", ["저축", "통장", "적금", "대출", "이자", "금융"]],
+    ["교육", ["장학", "등록금", "학교", "대학", "공부", "학자금"]],
+    ["취업", ["취업", "일자리", "알바", "구직", "면접", "직업"]],
+    ["건강", ["병원", "의료", "심리", "상담", "마음", "아파", "우울"]]
+  ];
+  const topic = topics.find(([, words]) => words.some((word) => question.includes(word)))?.[0];
+  const words = question.split(/\s+/).filter((word) => word.length >= 2);
+  const scored = (state.policies || []).map((policy) => {
+    const text = `${policy.title} ${policy.desc} ${policy.content || ""} ${policy.category}`;
+    const score = (topic && policy.category === topic ? 5 : 0) + words.filter((word) => text.includes(word)).length;
+    return { policy, score };
+  }).filter((item) => item.score > 0).sort((a, b) => b.score - a.score).slice(0, 3);
+  if (/안녕|하이|반가/.test(question) && !scored.length) return `안녕하세요, ${name}님! 주거, 생활비, 취업, 장학금, 건강 중 궁금한 걸 편하게 물어보세요.`;
+  if (!scored.length) return `${name}님, 질문과 딱 맞는 정책은 아직 찾지 못했어요. "월세 지원", "자립수당", "장학금"처럼 키워드로 물어보시면 지원정책에서 찾아드릴게요.`;
+  const lines = scored.map(({ policy }) => `• ${policy.title} (${policy.amount})\n  ${policy.desc}`);
+  return `${name}님, ${topic ? `${topic} 관련해서 ` : ""}이런 지원을 확인해 보세요.\n\n${lines.join("\n\n")}\n\n자세한 신청 방법은 지원정책 탭의 각 카드에서 볼 수 있어요. (오프라인 모드라 간단한 안내만 드려요)`;
+}
 // Source: js/api/policies-api.js
 function formatDeadline(date) {
   if (!date) return "상시 신청";
@@ -377,11 +578,11 @@ async function upsertUserIncome({ userId, monthlyIncome, incomeStatus }) {
 
 
 // Source: js/api/ai-api.js
-async function fetchGeminiAnswer(messages) {
+async function fetchGeminiAnswer(messages, userName = "") {
   const client = getSupabaseClient();
   if (!client) throw new Error("Supabase가 연결되지 않았습니다.");
 
-  const { data, error } = await client.functions.invoke("ai-chat", { body: { messages } });
+  const { data, error } = await client.functions.invoke("ai-chat", { body: { messages, userName } });
   if (error) {
     let detail = error.message || "Edge Function 호출 실패";
     try {
@@ -521,7 +722,7 @@ const state = {
   notificationExpenseEnabled: false,
   notificationExpenseCandidates: [],
   notificationExpenseLoading: false,
-  chat: [{ type: "bot", text: "안녕하세요, 지원님! 주거·생활·취업 정책 중 어떤 도움이 필요하세요?" }]
+  chat: [{ type: "bot", greeting: true, text: "" }]
 };
 
 
@@ -546,17 +747,28 @@ const showToast = (message) => {
 
 
 // Source: js/components/policy-card.js
+const LINK_NAMES = [["bokjiro", "복지로"], ["jaripon", "자립정보ON"], ["ncrc", "아동권리보장원"], ["mohw", "보건복지부"], ["lh.or.kr", "LH 청약플러스"], ["kosaf", "한국장학재단"], ["work24", "고용24"], ["bmc.busan", "부산도시공사"], ["gov.kr", "정부24"], ["youthcenter", "온통청년"]];
+const linkName = (url = "") => (LINK_NAMES.find(([key]) => url.includes(key)) || [null, "공식 페이지"])[1];
+const CATEGORY_TAG = { 생활: "", 주거: "house", 금융: "gold", 교육: "edu", 취업: "job", 건강: "health" };
+
 function policyCard(policy, index, result = false) {
   const saveKey = String(policy.id || policy.title);
+  const region = policy.region && policy.region !== "전국" ? `<span>${icon("location_on")} ${escapeHtml(policy.region)}</span>` : "";
+  const link = !result && policy.applicationUrl ? `<a class="policy-link" href="${escapeHtml(policy.applicationUrl)}" target="_blank" rel="noopener">${escapeHtml(linkName(policy.applicationUrl))}에서 확인하기 ${icon("open_in_new")}</a>` : "";
+  const details = !result && policy.content ? `<details class="policy-details">
+      <summary>자세히 보기 ${icon("expand_more")}</summary>
+      <ul>${policy.content.split("\n").filter(Boolean).map((line) => `<li>${escapeHtml(line)}</li>`).join("")}</ul>
+      ${policy.source ? `<div class="policy-details-foot"><small>출처: ${escapeHtml(policy.source)}</small></div>` : ""}
+    </details>` : "";
   return `<article class="card ${result ? "result-card" : "policy-card"} ${result && index === 2 ? "featured" : ""}">
-    <div class="card-top"><div><span class="tag ${policy.category === "금융" ? "gold" : ""}">${policy.category}</span><h3>${policy.title}</h3></div>
+    <div class="card-top"><div><span class="tag ${CATEGORY_TAG[policy.category] || ""}">${escapeHtml(policy.category)}</span><h3>${escapeHtml(policy.title)}</h3></div>
     <button class="bookmark ${state.saved.has(saveKey) ? "saved" : ""}" data-save="${escapeHtml(saveKey)}" aria-label="${escapeHtml(policy.title)} 저장">${icon("bookmark")}</button></div>
-    <p class="subtext">${policy.desc}</p>
-    <div class="meta"><span>${icon("payments")} ${policy.amount}</span><span>${icon("event")} ${policy.deadline}</span>${result ? `<span>${icon("verified")} 매칭 ${policy.match}%</span>` : ""}</div>
+    <p class="subtext">${escapeHtml(policy.desc)}</p>
+    <div class="meta"><span>${icon("payments")} ${escapeHtml(policy.amount)}</span><span>${icon("event")} ${escapeHtml(policy.deadline)}</span>${region}${result ? `<span>${icon("verified")} 매칭 ${policy.match}%</span>` : ""}</div>
+    ${link}
+    ${details}
   </article>`;
 }
-
-
 // Source: js/services/notifications.js
 const dayMs = 86400000;
 const startOfDay = (value) => { const date = new Date(value); return new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime(); };
@@ -621,7 +833,7 @@ const homeView = () => { const accountName = state.profile?.display_name || stat
 
 
 // Source: js/pages/policies.js
-const policiesView = () => { const categories = ["전체", "생활", "금융", "취업"]; const query = state.policySearch.trim().toLowerCase(); let filtered = state.policies.filter(p => (state.policyFilter === "전체" || p.category === state.policyFilter) && (!query || `${p.title} ${p.desc} ${p.category}`.toLowerCase().includes(query))); if (state.policySort === "마감 임박순") filtered = [...filtered].reverse(); const status = state.policiesLoading ? `<div class="card empty">정책을 불러오는 중이에요.</div>` : state.policiesError ? `<div class="card empty">${state.policiesError}</div>` : ""; return `<div class="page"><section><label class="policy-search">${icon("search")}<input id="policy-search" value="${state.policySearch}" placeholder="지원정책을 검색하세요" aria-label="지원정책 검색"><button class="filter-button ${state.showPolicySort ? "active" : ""}" type="button" data-policy-sort-toggle aria-label="정렬 필터 열기">${icon("tune")}</button></label>${state.showPolicySort ? `<div class="sort-options"><button class="${state.policySort === "추천순" ? "active" : ""}" data-sort="추천순">추천순</button><button class="${state.policySort === "마감 임박순" ? "active" : ""}" data-sort="마감 임박순">마감 임박순</button></div>` : ""}<div class="chips policy-filters">${categories.map(c => `<button class="chip ${c === state.policyFilter ? "active" : ""}" data-filter="${c}">${c}</button>`).join("")}</div>${status}<div class="list policy-list policy-results">${filtered.map((p) => policyCard(p, state.policies.indexOf(p))).join("") || (!state.policiesLoading ? `<div class="card empty">검색 조건에 맞는 정책이 없어요.</div>` : "")}</div></section></div>`; };
+const policiesView = () => { const categories = ["전체", "생활", "주거", "금융", "교육", "취업", "건강"]; const query = state.policySearch.trim().toLowerCase(); let filtered = state.policies.filter(p => (state.policyFilter === "전체" || p.category === state.policyFilter) && (!query || `${p.title} ${p.desc} ${p.category} ${p.content || ""} ${p.region || ""}`.toLowerCase().includes(query))); if (state.policySort === "마감 임박순") filtered = [...filtered].reverse(); const status = state.policiesLoading ? `<div class="card empty">정책을 불러오는 중이에요.</div>` : state.policiesError ? `<div class="card empty">${state.policiesError}</div>` : ""; return `<div class="page"><section><label class="policy-search">${icon("search")}<input id="policy-search" value="${state.policySearch}" placeholder="지원정책을 검색하세요" aria-label="지원정책 검색"><button class="filter-button ${state.showPolicySort ? "active" : ""}" type="button" data-policy-sort-toggle aria-label="정렬 필터 열기">${icon("tune")}</button></label>${state.showPolicySort ? `<div class="sort-options"><button class="${state.policySort === "추천순" ? "active" : ""}" data-sort="추천순">추천순</button><button class="${state.policySort === "마감 임박순" ? "active" : ""}" data-sort="마감 임박순">마감 임박순</button></div>` : ""}<div class="chips policy-filters">${categories.map(c => `<button class="chip ${c === state.policyFilter ? "active" : ""}" data-filter="${c}">${c}</button>`).join("")}</div>${status}<div class="list policy-list policy-results">${filtered.map((p) => policyCard(p, state.policies.indexOf(p))).join("") || (!state.policiesLoading ? `<div class="card empty">검색 조건에 맞는 정책이 없어요.</div>` : "")}</div></section></div>`; };
 
 
 // Source: js/pages/recommend.js
@@ -801,7 +1013,7 @@ const jobsView = () => `<div class="page"><section class="hero"><span class="her
 
 // Source: js/pages/chat.js
 const safeChatText = (text) => String(text).replace(/[&<>"']/g, character => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" })[character]);
-const chatView = () => `<div class="page"><header class="screen-head"><button class="screen-back" data-route="home" aria-label="홈으로 돌아가기">${icon("arrow_back")}</button><div><h1>이음 AI</h1><p>Gemini 청년 지원 상담 도우미</p></div></header><section class="chat-screen"><div id="chat-messages" class="chat-messages">${state.chat.map(message => `<div class="chat-bubble ${message.type === "user" ? "user" : "bot"}">${safeChatText(message.text)}</div>`).join("")}${state.chatLoading ? `<div class="chat-bubble bot chat-thinking">답변을 생각하고 있어요...</div>` : ""}</div><div class="chat-controls"><form id="chat-form" class="chat-form"><input name="message" maxlength="2000" autocomplete="off" placeholder="궁금한 내용을 입력하세요" aria-label="AI에게 메시지 보내기" ${state.chatLoading ? "disabled" : ""}><button aria-label="전송" ${state.chatLoading ? "disabled" : ""}>${icon("send")}</button></form></div></section></div>`;
+const chatView = () => `<div class="page"><header class="screen-head"><button class="screen-back" data-route="home" aria-label="홈으로 돌아가기">${icon("arrow_back")}</button><div><h1>이음 AI</h1><p>Gemini 청년 지원 상담 도우미</p></div></header><section class="chat-screen"><div id="chat-messages" class="chat-messages">${state.chat.map(message => `<div class="chat-bubble ${message.type === "user" ? "user" : "bot"}">${safeChatText(message.greeting ? chatGreetingText() : message.text)}</div>`).join("")}${state.chatLoading ? `<div class="chat-bubble bot chat-thinking">답변을 생각하고 있어요...</div>` : ""}</div><div class="chat-controls"><form id="chat-form" class="chat-form"><input name="message" maxlength="2000" autocomplete="off" placeholder="궁금한 내용을 입력하세요" aria-label="AI에게 메시지 보내기" ${state.chatLoading ? "disabled" : ""}><button aria-label="전송" ${state.chatLoading ? "disabled" : ""}>${icon("send")}</button></form></div></section></div>`;
 
 
 // Source: js/pages/write.js
@@ -809,15 +1021,16 @@ const writeView = () => `<div class="page"><header class="screen-head"><button c
 
 
 // Source: js/pages/profile.js
+const savedPolicyCount = () => state.policies.filter((policy) => state.saved.has(String(policy.id || policy.title))).length;
 const profileView = () => {
   if (state.authLoading) return `<div class="page"><div class="card empty">계정 정보를 확인하는 중이에요.</div></div>`;
 
-  if (!state.authUser) return `<div class="page"><section><span class="eyebrow">내 정보</span><h1>로그인하고<br>이음을 더 편하게 이용하세요</h1></section><section class="section card signed-out-card"><span class="avatar">${icon("person")}</span><h2>아직 로그인하지 않았어요</h2><p class="subtext">글쓰기, 댓글, 좋아요와 저장한 정책을 계정에 보관할 수 있어요.</p><div class="signed-out-actions"><button class="secondary-button" data-route="login">로그인</button><button class="text-button" data-route="signup">계정 만들기</button></div></section></div>`;
+  if (!state.authUser) return `<div class="page"><section><span class="eyebrow">내 정보</span><h1>로그인하고<br>이음을 더 편하게 이용하세요</h1></section><section class="section card signed-out-card"><span class="avatar">${icon("person")}</span><h2>아직 로그인하지 않았어요</h2><p class="subtext">글쓰기, 댓글, 좋아요와 저장한 정책을 계정에 보관할 수 있어요.</p><div class="signed-out-actions"><button class="secondary-button" data-route="login">로그인</button><button class="text-button" data-route="signup">계정 만들기</button></div></section><section class="section card menu-list"><button class="menu-row" data-route="saved-policies">${icon("bookmark")} 저장한 정책 ${savedPolicyCount() ? `<b class="menu-count">${savedPolicyCount()}</b>` : ""}${icon("chevron_right")}</button></section></div>`;
 
   const name = state.profile?.display_name || state.authUser.user_metadata?.display_name || "이음 사용자";
   const initial = name[0] || "이";
   const details = [state.profile?.birth_year ? `${new Date().getFullYear() - state.profile.birth_year + 1}세` : null, state.profile?.region].filter(Boolean).join(" · ") || state.authUser.email;
-  return `<div class="page"><section><span class="eyebrow">내 정보</span><h1>${name}님만을 위한<br>이음을 관리해요</h1></section><section class="section card profile-card"><span class="avatar">${initial}</span><div><h3>${name}님</h3><p class="subtext">${details}</p></div><button class="text-button" style="margin-left:auto" data-route="recommend">편집</button></section><section class="section card menu-list"><button class="menu-row" data-route="recommend">${icon("tune")} 맞춤 정보 관리 ${icon("chevron_right")}</button><button class="menu-row" data-toast="저장한 정책을 모아 보여드릴게요">${icon("bookmark")} 저장한 정책 ${icon("chevron_right")}</button><button class="menu-row" data-route="notification-settings">${icon("notifications")} 알림 설정 ${icon("chevron_right")}</button><button class="menu-row" data-auth-logout>${icon("logout")} 로그아웃 ${icon("chevron_right")}</button></section></div>`;
+  return `<div class="page"><section><span class="eyebrow">내 정보</span><h1>${name}님만을 위한<br>이음을 관리해요</h1></section><section class="section card profile-card"><span class="avatar">${initial}</span><div><h3>${name}님</h3><p class="subtext">${details}</p></div><button class="text-button" style="margin-left:auto" data-route="recommend">편집</button></section><section class="section card menu-list"><button class="menu-row" data-route="recommend">${icon("tune")} 맞춤 정보 관리 ${icon("chevron_right")}</button><button class="menu-row" data-route="saved-policies">${icon("bookmark")} 저장한 정책 ${icon("chevron_right")}</button><button class="menu-row" data-route="notification-settings">${icon("notifications")} 알림 설정 ${icon("chevron_right")}</button><button class="menu-row" data-auth-logout>${icon("logout")} 로그아웃 ${icon("chevron_right")}</button></section></div>`;
 };
 
 
@@ -937,6 +1150,14 @@ const notificationSettingsView = () => `<div class="page notifications-page"><se
   <section class="card notification-settings">${[["community", "댓글·답글"], ["policy", "저장한 정책 마감"], ["rent", "월세 납부일"]].map(([key, label]) => `<label><span>${label}</span><input type="checkbox" data-notification-setting="${key}" ${state.notificationSettings[key] ? "checked" : ""}></label>`).join("")}</section></div>`;
 
 
+// Source: js/pages/saved-policies.js
+const savedPoliciesView = () => {
+  const saved = state.policies.filter((policy) => state.saved.has(String(policy.id || policy.title)));
+  const list = saved.length
+    ? saved.map((policy) => policyCard(policy, state.policies.indexOf(policy))).join("")
+    : `<div class="card empty saved-empty">${icon("bookmark")}<p>아직 저장한 정책이 없어요.<br>지원정책 카드의 북마크를 누르면 여기에 모여요.</p><button class="secondary-button" data-route="policies">지원정책 보러 가기</button></div>`;
+  return `<div class="page"><header class="screen-head"><button class="screen-back" data-route="profile" aria-label="내 정보로 돌아가기">${icon("arrow_back")}</button><div><h1>저장한 정책</h1><p>${saved.length ? `${saved.length}개를 저장했어요` : "관심 있는 정책을 모아 보세요"}</p></div></header><section class="list policy-list">${list}</section></div>`;
+};
 // Source: js/pages/views.js
 const views = {
   home: homeView,
@@ -959,6 +1180,7 @@ const views = {
   onboarding: onboardingView,
   notifications: notificationsView,
   "notification-settings": notificationSettingsView,
+  "saved-policies": savedPoliciesView,
 };
 
 
@@ -979,8 +1201,8 @@ function render() {
   document.body.classList.toggle("chat-mode", route === "chat");
   document.body.classList.toggle("auth-flow-mode", ["welcome", "login", "forgot-password", "reset-password", "signup", "onboarding"].includes(route));
   app.innerHTML = views[route]();
-  document.querySelectorAll(".bottom-nav button").forEach(btn => btn.classList.toggle("active", btn.dataset.route === route || (["living", "living-settings", "support-status", "jobs", "chat", "notifications"].includes(route) && btn.dataset.route === "home") || (["recommend", "notification-settings"].includes(route) && btn.dataset.route === "profile") || (["write", "post"].includes(route) && btn.dataset.route === "community")));
-  document.title = `${route === "home" ? "이음" : ({ policies:"지원정책", recommend:"맞춤 추천", living:"생활 관리", "living-settings":"생활비 설정", "support-status":"나의 지원 현황", community:"커뮤니티", jobs:"취업 지원", profile:"내 정보", chat:"AI 상담", write:"글쓰기", post:"게시글", login:"로그인", "forgot-password":"비밀번호 찾기", "reset-password":"새 비밀번호 설정", signup:"계정 만들기", welcome:"환영합니다", onboarding:"첫 설정", notifications:"알림", "notification-settings":"알림 설정" })[route]} | 이음`;
+  document.querySelectorAll(".bottom-nav button").forEach(btn => btn.classList.toggle("active", btn.dataset.route === route || (["living", "living-settings", "support-status", "jobs", "chat", "notifications"].includes(route) && btn.dataset.route === "home") || (["recommend", "notification-settings", "saved-policies"].includes(route) && btn.dataset.route === "profile") || (["write", "post"].includes(route) && btn.dataset.route === "community")));
+  document.title = `${route === "home" ? "이음" : ({ policies:"지원정책", recommend:"맞춤 추천", living:"생활 관리", "living-settings":"생활비 설정", "support-status":"나의 지원 현황", community:"커뮤니티", jobs:"취업 지원", profile:"내 정보", "saved-policies":"저장한 정책", chat:"AI 상담", write:"글쓰기", post:"게시글", login:"로그인", "forgot-password":"비밀번호 찾기", "reset-password":"새 비밀번호 설정", signup:"계정 만들기", welcome:"환영합니다", onboarding:"첫 설정", notifications:"알림", "notification-settings":"알림 설정" })[route]} | 이음`;
   const actionType = ["home", "policies"].includes(route) ? "chat" : route === "community" ? "write" : "";
   contextAction.className = `context-action${actionType ? " visible" : ""}${actionType === "write" ? " write" : ""}`;
   contextAction.dataset.action = actionType;
@@ -1005,15 +1227,25 @@ function addChatMessage(text, type = "user") {
   requestAnimationFrame(() => { const messages = document.querySelector("#chat-messages"); if (messages) messages.scrollTop = messages.scrollHeight; });
 }
 
+function currentUserName() {
+  return state.profile?.display_name || state.authUser?.user_metadata?.display_name || "";
+}
+
+function chatGreetingText() {
+  const name = currentUserName();
+  return `안녕하세요${name ? `, ${name}님` : ""}! 주거·생활·취업 정책 중 어떤 도움이 필요하세요?`;
+}
+
 async function sendChatMessage(question) {
   if (!state.authUser) throw new Error("로그인이 필요합니다.");
+  state.chat.forEach((message) => { if (message.greeting) message.text = chatGreetingText(); });
   state.chat.push({ text: question, type: "user" });
   state.chatLoading = true;
   render();
   requestAnimationFrame(() => { const messages = document.querySelector("#chat-messages"); if (messages) messages.scrollTop = messages.scrollHeight; });
 
   try {
-    const answer = await fetchGeminiAnswer(state.chat);
+    const answer = await fetchGeminiAnswer(state.chat, currentUserName());
     state.chat.push({ text: answer, type: "bot" });
   } catch (error) {
     console.error("Gemini 채팅 실패", error);
@@ -1029,7 +1261,7 @@ async function sendChatMessage(question) {
 
 // Source: js/services/policies.js
 async function loadPolicies({ renderUpdates = true } = {}) {
-  if (!isSupabaseConfigured()) return;
+  if (isLocalMode()) return; // 오프라인 모드는 앱에 내장된 정책을 사용
 
   state.policiesLoading = true;
   state.policiesError = null;
@@ -1485,7 +1717,7 @@ function registerEventHandlers() {  document.addEventListener("click", async (ev
     const commentTarget = event.target.closest("[data-comment-index]");
     if (commentTarget && !event.target.closest("form")) { const index = Number(commentTarget.dataset.commentIndex); state.replyTarget = state.replyTarget === index ? null : index; render(); if (state.replyTarget !== null) requestAnimationFrame(() => document.querySelector("#reply-form input")?.focus()); return; }
     if (event.target.closest("[data-share]")) { const post = state.posts[state.selectedPost] || state.posts[0]; if (!post) return; if (navigator.share) navigator.share({ title: post.title, text: post.body, url: location.href }).catch(() => {}); else { navigator.clipboard?.writeText(location.href); showToast("게시글 주소를 복사했어요"); } return; }
-    if (event.target.closest("[data-auth-logout]")) { showToast("UI 확인용에서는 로그아웃하지 않습니다"); return; }
+    if (event.target.closest("[data-auth-logout]")) { logoutAccount().then(() => { location.hash = "welcome"; showToast("로그아웃했어요"); }).catch(() => showToast("로그아웃하지 못했어요")); return; }
     if (event.target.closest("[data-google-login]")) { loginWithGoogleAccount(); return; }
     const postTarget = event.target.closest("[data-post]");
     if (postTarget) { state.selectedPost = Number(postTarget.dataset.post); state.replyTarget = null; location.hash = "post"; return; }
@@ -1556,13 +1788,24 @@ function initializeRouter() {
 
 
 // Source: js/app.js
-// UI 확인용: 실제 계정이나 서버에 연결하지 않습니다.
-state.authUser = { id: "ui-preview", email: "preview@example.invalid", user_metadata: { display_name: "미리보기" } };
-state.profile = { display_name: "미리보기", region: "서울", birth_year: 2000 };
-state.authLoading = false;
-state.authRecovery = false;
-state.guestMode = false;
-state.route = location.hash.slice(1) || "home";
+// 서버가 꺼져 있으면(config.js가 비어 있으면) 오프라인 모드로 휴대폰 안에 저장하며 동작합니다.
 registerEventHandlers();
 initializeRouter();
-render();
+
+const fontsReady = document.fonts
+  ? Promise.race([document.fonts.load('20px "Material Symbols Rounded"'), new Promise((resolve) => setTimeout(resolve, 2500))])
+  : Promise.resolve();
+
+Promise.all([
+  loadPolicies({ renderUpdates: false }),
+  loadCommunity({ renderUpdates: false }),
+  initializeAuth({ renderUpdates: false }),
+  fontsReady
+]).finally(() => render());
+
+const refreshCommunityNotifications = () => {
+  if (document.hidden || !state.authUser || !["home", "community", "profile", "notifications"].includes(state.route)) return;
+  loadCommunity({ renderUpdates: false }).then(render).catch((error) => console.error("커뮤니티 알림 갱신 실패", error));
+};
+document.addEventListener("visibilitychange", refreshCommunityNotifications);
+setInterval(refreshCommunityNotifications, 60000);
