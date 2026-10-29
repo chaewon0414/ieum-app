@@ -12,7 +12,7 @@ async function fetchCommunityPosts() {
   if (!client) return null;
 
   const [{ data: posts, error: postsError }, { data: comments, error: commentsError }, { data: likes, error: likesError }] = await Promise.all([
-    client.from("community_posts").select("id,author_id,author_name,category,title,body,image_url,created_at").eq("status", "published").order("created_at", { ascending: false }),
+    client.from("community_posts").select("*").eq("status", "published").order("created_at", { ascending: false }),
     client.from("community_comments").select("id,post_id,parent_id,author_id,author_name,body,created_at").eq("status", "published").order("created_at", { ascending: true }),
     client.from("community_post_likes").select("post_id,user_id")
   ]);
@@ -29,6 +29,7 @@ async function fetchCommunityPosts() {
       authorId: post.author_id,
       author: post.author_name,
       time: relativeTime(post.created_at),
+      kind: post.kind || "질문",
       category: post.category,
       title: post.title,
       body: post.body,
@@ -56,7 +57,7 @@ async function fetchCommunityPosts() {
   });
 }
 
-async function insertCommunityPost({ userId, authorName, category, title, body }) {
+async function insertCommunityPost({ userId, authorName, kind = "질문", category, title, body }) {
   const client = getSupabaseClient();
   if (!client) throw new Error("Supabase가 연결되지 않았습니다.");
 
@@ -65,6 +66,7 @@ async function insertCommunityPost({ userId, authorName, category, title, body }
     .insert({
       author_id: userId,
       author_name: authorName,
+      kind,
       category,
       title,
       body,

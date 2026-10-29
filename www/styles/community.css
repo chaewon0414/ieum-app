@@ -82,3 +82,11 @@
 .reply-item { padding: 8px 10px; border-radius: 10px; background: var(--surface); }
 .reply-item header { margin-bottom: 3px; }
 .reply-item p { font-size: 12px; }
+
+/* 글쓰기: 게시판 선택 */
+.write-kind { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.write-kind-option { position: relative; display: block; margin: 0; }
+.write-kind-option input { position: absolute; opacity: 0; pointer-events: none; }
+.write-kind-option span { display: grid; place-items: center; height: 42px; border: 1px solid var(--line); border-radius: 13px; color: var(--muted); background: #fff; font-size: 13px; font-weight: 800; cursor: pointer; }
+.write-kind-option input:checked + span { border-color: var(--primary); color: var(--on-primary); background: var(--primary); }
+.write-kind-option input:focus-visible + span { outline: 2px solid var(--primary-text); outline-offset: 2px; }

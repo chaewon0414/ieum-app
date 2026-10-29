@@ -23,8 +23,9 @@ const APP_DATA = {
     { company: "네이버", title: "UX/UI 디자인 체험형 인턴", tags: ["인턴", "분당", "디자인"], deadline: "D-18" }
   ],
   posts: [
-    { author: "취준하는 민지", time: "12분 전", category: "취업", title: "첫 면접을 앞두고 있는데 이것만은 꼭 준비하세요", body: "지난주 모의 면접에서 받은 피드백을 정리해봤어요. 답변을 외우기보다 경험을 상황-행동-결과로 나누니 훨씬 자연스러웠습니다.", likes: 42, comments: 13 },
-    { author: "자립 2년 차", time: "1시간 전", category: "생활", title: "한 달 생활비를 줄여준 작은 습관들", body: "고정비를 먼저 분리하고 남은 금액을 주 단위로 나눠 쓰니 월말이 훨씬 편해졌어요. 저만의 예산표도 공유해요.", image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=300&q=80", likes: 87, comments: 26 }
+    { kind: "질문", author: "취준하는 민지", time: "12분 전", category: "취업", title: "첫 면접을 앞두고 있는데 이것만은 꼭 준비하세요", body: "지난주 모의 면접에서 받은 피드백을 정리해봤어요. 답변을 외우기보다 경험을 상황-행동-결과로 나누니 훨씬 자연스러웠습니다.", likes: 42, comments: 13 },
+    { kind: "꿀팁", author: "자립 2년 차", time: "1시간 전", category: "생활", title: "한 달 생활비를 줄여준 작은 습관들", body: "고정비를 먼저 분리하고 남은 금액을 주 단위로 나눠 쓰니 월말이 훨씬 편해졌어요. 저만의 예산표도 공유해요.", image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=300&q=80", likes: 87, comments: 26 },
+    { kind: "모임", author: "관악 새내기", time: "30분 전", category: "관계", title: "이번 주 토요일 같이 저녁 먹을 분 구해요", body: "자립한 지 얼마 안 돼서 주변에 아는 사람이 없어요. 관악구 근처에서 편하게 밥 먹고 이야기 나눌 분 계시면 댓글 주세요.", likes: 9, comments: 0 }
   ]
 };
 
@@ -88,12 +89,25 @@ function readLocalDb() {
     (APP_DATA.posts || []).forEach((post, index) => {
       const id = `seed-post-${index}`;
       const created = Date.now() - minutesAgo(post.time || "") * 60000;
-      posts.push({ id, author_id: "seed", author_name: post.author, category: post.category, title: post.title, body: post.body, image_url: post.image || null, status: "published", created_at: new Date(created).toISOString() });
+      posts.push({ id, author_id: "seed", author_name: post.author, kind: post.kind || "질문", category: post.category, title: post.title, body: post.body, image_url: post.image || null, status: "published", created_at: new Date(created).toISOString() });
       (post.commentList || []).forEach((comment, commentIndex) => {
         comments.push({ id: `${id}-c${commentIndex}`, post_id: id, parent_id: null, author_id: "seed", author_name: comment.author, body: comment.body, status: "published", created_at: new Date(created + (commentIndex + 1) * 60000).toISOString() });
       });
     });
     db.seededCommunity = true;
+    db.seedVersion = 2;
+    writeLocalDb(db);
+  }
+  if ((db.seedVersion || 1) < 2) {
+    // 예전에 저장된 샘플 게시글에 게시판(질문/모임/꿀팁)을 붙이고, 새 샘플을 추가합니다.
+    const posts = db.tables.community_posts ||= [];
+    (APP_DATA.posts || []).forEach((post, index) => {
+      const id = `seed-post-${index}`;
+      const existing = posts.find((row) => row.id === id);
+      if (existing) existing.kind = post.kind || "질문";
+      else posts.push({ id, author_id: "seed", author_name: post.author, kind: post.kind || "질문", category: post.category, title: post.title, body: post.body, image_url: post.image || null, status: "published", created_at: new Date(Date.now() - 30 * 60000).toISOString() });
+    });
+    db.seedVersion = 2;
     writeLocalDb(db);
   }
   return db;
@@ -313,7 +327,7 @@ async function fetchCommunityPosts() {
   if (!client) return null;
 
   const [{ data: posts, error: postsError }, { data: comments, error: commentsError }, { data: likes, error: likesError }] = await Promise.all([
-    client.from("community_posts").select("id,author_id,author_name,category,title,body,image_url,created_at").eq("status", "published").order("created_at", { ascending: false }),
+    client.from("community_posts").select("*").eq("status", "published").order("created_at", { ascending: false }),
     client.from("community_comments").select("id,post_id,parent_id,author_id,author_name,body,created_at").eq("status", "published").order("created_at", { ascending: true }),
     client.from("community_post_likes").select("post_id,user_id")
   ]);
@@ -330,6 +344,7 @@ async function fetchCommunityPosts() {
       authorId: post.author_id,
       author: post.author_name,
       time: relativeTime(post.created_at),
+      kind: post.kind || "질문",
       category: post.category,
       title: post.title,
       body: post.body,
@@ -357,7 +372,7 @@ async function fetchCommunityPosts() {
   });
 }
 
-async function insertCommunityPost({ userId, authorName, category, title, body }) {
+async function insertCommunityPost({ userId, authorName, kind = "질문", category, title, body }) {
   const client = getSupabaseClient();
   if (!client) throw new Error("Supabase가 연결되지 않았습니다.");
 
@@ -366,6 +381,7 @@ async function insertCommunityPost({ userId, authorName, category, title, body }
     .insert({
       author_id: userId,
       author_name: authorName,
+      kind,
       category,
       title,
       body,
@@ -1033,7 +1049,9 @@ const chatView = () => `<div class="page"><header class="screen-head"><button cl
 
 
 // Source: js/pages/write.js
-const writeView = () => `<div class="page"><header class="screen-head"><button class="screen-back" data-route="community" aria-label="커뮤니티로 돌아가기">${icon("arrow_back")}</button><div><h1>새 글 작성</h1><p>커뮤니티에 경험을 나눠주세요</p></div></header><section class="card write-screen"><form id="write-form" class="write-form"><label>카테고리<select name="category"><option>생활</option><option>취업</option><option>주거</option><option>관계</option><option>금융</option></select></label><label>제목<input name="title" maxlength="60" required placeholder="제목을 입력하세요"></label><label>내용<textarea name="body" maxlength="1000" required placeholder="서로에게 도움이 되는 이야기를 들려주세요"></textarea></label><button class="secondary-button" type="submit">게시하기</button></form></section></div>`;
+const COMMUNITY_KINDS = ["질문", "모임", "꿀팁"];
+const COMMUNITY_CATEGORIES = ["생활", "취업", "주거", "관계", "금융"];
+const writeView = () => `<div class="page"><header class="screen-head"><button class="screen-back" data-route="community" aria-label="커뮤니티로 돌아가기">${icon("arrow_back")}</button><div><h1>새 글 작성</h1><p>올릴 게시판을 고르고 이야기를 나눠주세요</p></div></header><section class="card write-screen"><form id="write-form" class="write-form"><div class="write-kind" role="radiogroup" aria-label="게시판">${COMMUNITY_KINDS.map((kind) => `<label class="write-kind-option"><input type="radio" name="kind" value="${kind}" ${kind === state.communityKind ? "checked" : ""}><span>${kind}</span></label>`).join("")}</div><label>카테고리<select name="category">${COMMUNITY_CATEGORIES.map((category) => `<option ${category === state.communityFilter ? "selected" : ""}>${category}</option>`).join("")}</select></label><label>제목<input name="title" maxlength="60" required placeholder="제목을 입력하세요"></label><label>내용<textarea name="body" maxlength="1000" required placeholder="서로에게 도움이 되는 이야기를 들려주세요"></textarea></label><button class="secondary-button" type="submit">게시하기</button></form></section></div>`;
 
 
 // Source: js/pages/profile.js
@@ -1328,9 +1346,9 @@ function currentAuthor() {
   };
 }
 
-async function saveCommunityPost({ category, title, body }) {
+async function saveCommunityPost({ kind = "질문", category, title, body }) {
   const author = currentAuthor();
-  const created = await insertCommunityPost({ ...author, category, title, body });
+  const created = await insertCommunityPost({ ...author, kind, category, title, body });
   await loadCommunity({ renderUpdates: false });
   state.selectedPost = Math.max(0, state.posts.findIndex((post) => post.id === created.id));
   render();
@@ -1787,7 +1805,7 @@ function registerEventHandlers() {  document.addEventListener("click", async (ev
     if (event.target.id === "comment-form") { event.preventDefault(); if (!state.authUser) { location.hash = "login"; showToast("로그인 후 댓글을 작성할 수 있어요"); return; } const input = event.target.elements.comment; const body = input.value.trim(); const post = state.posts[state.selectedPost] || state.posts[0]; if (!body || !post?.id) return; const button = event.target.querySelector("button"); button.disabled = true; try { await saveCommunityComment({ postId: post.id, body }); showToast("댓글을 등록했어요"); } catch (error) { console.error("댓글 저장 실패", error); button.disabled = false; showToast("댓글을 저장하지 못했어요"); } return; }
     if (event.target.id === "reply-form") { event.preventDefault(); if (!state.authUser) { location.hash = "login"; showToast("로그인 후 답글을 작성할 수 있어요"); return; } const body = event.target.elements.reply.value.trim(); const post = state.posts[state.selectedPost] || state.posts[0]; const comment = post?.commentList?.[Number(event.target.dataset.replyIndex)]; if (!body || !post?.id || !comment?.id) return; const button = event.target.querySelector("button"); button.disabled = true; try { await saveCommunityComment({ postId: post.id, parentId: comment.id, body }); showToast("답글을 등록했어요"); } catch (error) { console.error("답글 저장 실패", error); button.disabled = false; showToast("답글을 저장하지 못했어요"); } return; }
     if (event.target.id === "chat-form") { event.preventDefault(); if (!state.authUser) { location.hash = "login"; showToast("로그인 후 AI 상담을 이용할 수 있어요"); return; } if (state.chatLoading) return; const input = event.target.elements.message; const question = input.value.trim(); if (!question) return; input.value = ""; try { await sendChatMessage(question); } catch { showToast("AI 답변을 불러오지 못했어요"); } return; }
-    if (event.target.id === "write-form") { event.preventDefault(); if (!state.authUser) { location.hash = "login"; showToast("로그인 후 글을 작성할 수 있어요"); return; } const data = new FormData(event.target); const button = event.target.querySelector("button[type=submit]"); button.disabled = true; button.textContent = "게시 중..."; try { await saveCommunityPost({ category: data.get("category"), title: data.get("title").trim(), body: data.get("body").trim() }); location.hash = "community"; showToast("게시글을 등록했어요"); } catch (error) { console.error("게시글 저장 실패", error); button.disabled = false; button.textContent = "게시하기"; showToast("게시글을 저장하지 못했어요"); } return; }
+    if (event.target.id === "write-form") { event.preventDefault(); if (!state.authUser) { location.hash = "login"; showToast("로그인 후 글을 작성할 수 있어요"); return; } const data = new FormData(event.target); const button = event.target.querySelector("button[type=submit]"); button.disabled = true; button.textContent = "게시 중..."; try { const kind = data.get("kind") || state.communityKind; const category = data.get("category"); await saveCommunityPost({ kind, category, title: data.get("title").trim(), body: data.get("body").trim() }); state.communityKind = kind; state.communityFilter = category; location.hash = "community"; showToast("게시글을 등록했어요"); } catch (error) { console.error("게시글 저장 실패", error); button.disabled = false; button.textContent = "게시하기"; showToast("게시글을 저장하지 못했어요"); } return; }
     if (event.target.id === "recommend-form") { event.preventDefault(); const data = new FormData(event.target); const age = Number(data.get("age")); if (age < 14 || age > 99) { showToast("나이는 14세부터 99세 사이로 입력해주세요"); return; } const displayName = data.get("displayName").trim(); const region = data.get("region").trim(); if (!displayName || !region) { showToast("이름과 거주지역을 입력해주세요"); return; } const button = event.target.querySelector("button[type=submit]"); button.disabled = true; try { await savePersonalInfo({ displayName, age, gender: data.get("gender"), region, income: data.get("salary").trim() }); showToast("내 정보를 저장했어요"); } catch (error) { console.error("내 정보 저장 실패", error); button.disabled = false; showToast("내 정보를 저장하지 못했어요"); } return; }
   });
 }

@@ -25,12 +25,25 @@ function readLocalDb() {
     (APP_DATA.posts || []).forEach((post, index) => {
       const id = `seed-post-${index}`;
       const created = Date.now() - minutesAgo(post.time || "") * 60000;
-      posts.push({ id, author_id: "seed", author_name: post.author, category: post.category, title: post.title, body: post.body, image_url: post.image || null, status: "published", created_at: new Date(created).toISOString() });
+      posts.push({ id, author_id: "seed", author_name: post.author, kind: post.kind || "질문", category: post.category, title: post.title, body: post.body, image_url: post.image || null, status: "published", created_at: new Date(created).toISOString() });
       (post.commentList || []).forEach((comment, commentIndex) => {
         comments.push({ id: `${id}-c${commentIndex}`, post_id: id, parent_id: null, author_id: "seed", author_name: comment.author, body: comment.body, status: "published", created_at: new Date(created + (commentIndex + 1) * 60000).toISOString() });
       });
     });
     db.seededCommunity = true;
+    db.seedVersion = 2;
+    writeLocalDb(db);
+  }
+  if ((db.seedVersion || 1) < 2) {
+    // 예전에 저장된 샘플 게시글에 게시판(질문/모임/꿀팁)을 붙이고, 새 샘플을 추가합니다.
+    const posts = db.tables.community_posts ||= [];
+    (APP_DATA.posts || []).forEach((post, index) => {
+      const id = `seed-post-${index}`;
+      const existing = posts.find((row) => row.id === id);
+      if (existing) existing.kind = post.kind || "질문";
+      else posts.push({ id, author_id: "seed", author_name: post.author, kind: post.kind || "질문", category: post.category, title: post.title, body: post.body, image_url: post.image || null, status: "published", created_at: new Date(Date.now() - 30 * 60000).toISOString() });
+    });
+    db.seedVersion = 2;
     writeLocalDb(db);
   }
   return db;
