@@ -1,0 +1,8 @@
+/* profile */
+.profile-card { display: flex; align-items: center; gap: 16px; padding: 22px; }
+.profile-card .avatar { width: 62px; height: 62px; font-size: 21px; }
+.menu-list { overflow: hidden; }
+.menu-row { width: 100%; display: flex; align-items: center; gap: 13px; padding: 17px 19px; border: 0; border-bottom: 1px solid var(--line); text-align: left; background: #fff; cursor: pointer; }
+.menu-row:last-child { border: 0; }
+.menu-row .material-symbols-rounded:last-child { margin-left: auto; color: #98a1ad; }
+.empty { padding: 34px 18px; text-align: center; color: var(--muted); }

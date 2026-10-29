@@ -1,0 +1,54 @@
+/* 기기 너비와 높이에 따라 앱 비율을 자동 보정합니다. */
+img { max-width: 100%; }
+input, select, textarea, button { max-width: 100%; }
+
+@media (max-width: 360px) {
+  :root { --radius: 20px; --page-space: 13px; }
+  .brand { font-size: 18px; }
+  .brand-mark { width: 31px; height: 31px; border-radius: 10px; }
+  .topbar-actions { gap: 5px; }
+  .icon-button { width: 38px; height: 38px; }
+  .avatar { width: 34px; height: 34px; }
+  .card, .policy-card, .feed-card, .job-card { border-radius: 20px; }
+  .policy-card, .feed-card, .job-card { padding: 16px; }
+  .meta { gap: 6px 9px; font-size: 11px; }
+  .bottom-nav small { font-size: 9px; }
+  .bottom-nav button { border-radius: 13px; }
+}
+
+@media (max-height: 740px) {
+  :root {
+    --topbar-height: 60px;
+    --nav-height: 62px;
+    --main-bottom-space: calc(var(--nav-height) + 18px + env(safe-area-inset-bottom));
+  }
+  .home-page > .section { margin-top: 9px; }
+  .home-page > .section:last-child { padding-top: 8px; }
+  .home-page .status-title { margin-bottom: 10px; }
+  .home-page .status-grid { gap: 12px; }
+  .home-page .status-grid strong { font-size: 19px; }
+  .home-page .status-foot { margin-top: 10px; padding-top: 10px; }
+  .home-page .section-head { margin-bottom: 5px; }
+  .home-page .action-icon { width: 34px; height: 34px; margin-bottom: 5px; }
+  .home-page .action-card:not(.wide) { padding: 8px 10px; }
+  .home-page .action-card:not(.wide) .action-icon { flex-basis: 32px; width: 32px; height: 32px; margin-right: 7px; }
+  .home-page .action-card:not(.wide) h3 { font-size: 13px; }
+  .home-page .action-card:not(.wide) p { font-size: 9.5px; }
+  .home-page .action-card.wide .action-icon { margin-bottom: 0; }
+  .home-page .daily-message { min-height: 52px; padding-top: 7px; padding-bottom: 7px; }
+}
+
+@media (max-height: 620px) {
+  .home-page .status-card { min-height: 132px; }
+  .home-page .status-title { margin-bottom: 5px; }
+  .home-page .status-foot { margin-top: 6px; padding-top: 6px; }
+  .home-page .action-card p { display: none; }
+  .home-page .daily-message p { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}
+
+@media (orientation: landscape) and (max-height: 520px) {
+  .home-lock { overflow: auto; }
+  .home-page { height: auto; min-height: calc(100dvh - var(--topbar-height) - var(--main-bottom-space)); overflow: visible; }
+  .home-page .quick-start-section .action-grid { grid-template-rows: auto; }
+  .home-page .quick-start-section .action-card { min-height: 82px; }
+}

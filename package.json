@@ -1,0 +1,16 @@
+{
+  "name": "ieum-app",
+  "version": "0.4.1",
+  "private": true,
+  "scripts": {
+    "bundle": "node www/build-bundle.js",
+    "sync": "npx cap sync android"
+  },
+  "dependencies": {
+    "@capacitor/android": "6.2.0",
+    "@capacitor/core": "6.2.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "6.2.0"
+  }
+}

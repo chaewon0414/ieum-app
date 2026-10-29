@@ -1,0 +1,13 @@
+/* policies */
+.chips.policy-filters { display: grid; grid-template-columns: repeat(4, 1fr); width: 100%; gap: 8px; overflow: visible; }
+.chips.policy-filters .chip { min-width: 0; padding-inline: 4px; text-align: center; }
+.policy-search { display: flex; align-items: center; gap: 9px; height: 52px; margin-bottom: 13px; padding: 0 8px 0 15px; border: 1px solid var(--line); border-radius: 17px; background: #fff; box-shadow: 0 4px 16px rgba(90,70,30,.05); }
+.policy-search > .material-symbols-rounded { flex: 0 0 auto; color: var(--muted); }
+.policy-search input { min-width: 0; flex: 1; height: 100%; border: 0; outline: 0; color: var(--text); background: transparent; }
+.policy-search input::placeholder { color: #98a1ad; }
+.filter-button { width: 40px; height: 40px; display: grid; place-items: center; flex: 0 0 auto; border: 0; border-radius: 12px; color: var(--muted); background: var(--surface); cursor: pointer; }
+.filter-button.active { color: var(--on-primary); background: var(--primary); }
+.sort-options { display: flex; justify-content: flex-end; gap: 7px; margin: 9px 0 2px; animation: enter .2s ease both; }
+.sort-options button { padding: 7px 10px; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); background: #fff; font-size: 11px; font-weight: 700; cursor: pointer; }
+.sort-options button.active { border-color: var(--primary); color: var(--primary-text); background: var(--primary-soft); }
+.policy-results { margin-top: 14px; }

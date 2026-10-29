@@ -1,0 +1,27 @@
+/* variables */
+:root {
+  --primary: #efcd78;
+  --primary-dark: #e0b85a;
+  --primary-soft: #fdf5df;
+  --secondary: #d39a6a;
+  --secondary-soft: #fcebdc;
+  --tertiary: #8a6200;
+  --tertiary-soft: #fff0c7;
+  --surface: #fcfbf8;
+  --surface-low: #f6f3ec;
+  --primary-text: #8c6414;
+  --on-primary: #4a3712;
+  --white: #fff;
+  --text: #18202a;
+  --muted: #667080;
+  --line: #ede7da;
+  --danger: #ba1a1a;
+  --radius: 24px;
+  --shadow: 0 8px 30px rgba(90,70,30,.08);
+  --app-width: 430px;
+  --page-max: 430px;
+  --page-space: clamp(13px, 4.2vw, 18px);
+  --topbar-height: clamp(62px, 9dvh, 72px);
+  --nav-height: clamp(64px, 9dvh, 72px);
+  --main-bottom-space: calc(var(--nav-height) + 24px + env(safe-area-inset-bottom));
+}

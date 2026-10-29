@@ -1,0 +1,11 @@
+{
+  "appId": "kr.co.ieum.demo",
+  "appName": "이음",
+  "webDir": "www",
+  "android": {
+    "allowMixedContent": false
+  },
+  "server": {
+    "androidScheme": "https"
+  }
+}
