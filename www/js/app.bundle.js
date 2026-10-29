@@ -441,10 +441,16 @@ const readStoredState = (key, fallback) => {
   }
 };
 
-const defaultSupportApplications = [
-  { id: "youth-rent", title: "청년 월세 지원", amount: 200000, status: "심사 중", updatedAt: "2026-08-28" },
-  { id: "youth-savings", title: "청년도약계좌 기여금", amount: 500000, status: "서류 검토", updatedAt: "2026-08-30" }
-];
+const readSupportApplications = () => {
+  const saved = readStoredState("ieum-support-applications", []);
+  if (!Array.isArray(saved)) return [];
+  const applications = saved.filter((item) => !(
+    (item?.id === "youth-rent" && item.title === "청년 월세 지원" && Number(item.amount) === 200000)
+    || (item?.id === "youth-savings" && item.title === "청년도약계좌 기여금" && Number(item.amount) === 500000)
+  ));
+  if (applications.length !== saved.length) localStorage.setItem("ieum-support-applications", JSON.stringify(applications));
+  return applications;
+};
 
 const defaultLiving = {
   income: 1900000,
@@ -509,7 +515,7 @@ const state = {
   notificationSettings: readStoredState("ieum-notification-settings", { community: true, policy: true, rent: true }),
   notificationRead: readStoredState("ieum-notification-read", {}),
   checked: new Set([0, 2]),
-  supportApplications: readStoredState("ieum-support-applications", defaultSupportApplications),
+  supportApplications: readSupportApplications(),
   living: normalizeLiving(readStoredState("ieum-living", defaultLiving)),
   notificationExpenseAvailable: false,
   notificationExpenseEnabled: false,
@@ -1479,7 +1485,7 @@ function registerEventHandlers() {  document.addEventListener("click", async (ev
     const commentTarget = event.target.closest("[data-comment-index]");
     if (commentTarget && !event.target.closest("form")) { const index = Number(commentTarget.dataset.commentIndex); state.replyTarget = state.replyTarget === index ? null : index; render(); if (state.replyTarget !== null) requestAnimationFrame(() => document.querySelector("#reply-form input")?.focus()); return; }
     if (event.target.closest("[data-share]")) { const post = state.posts[state.selectedPost] || state.posts[0]; if (!post) return; if (navigator.share) navigator.share({ title: post.title, text: post.body, url: location.href }).catch(() => {}); else { navigator.clipboard?.writeText(location.href); showToast("게시글 주소를 복사했어요"); } return; }
-    if (event.target.closest("[data-auth-logout]")) { logoutAccount().then(() => { location.hash = "welcome"; showToast("로그아웃했어요"); }).catch(() => showToast("로그아웃하지 못했어요")); return; }
+    if (event.target.closest("[data-auth-logout]")) { showToast("UI 확인용에서는 로그아웃하지 않습니다"); return; }
     if (event.target.closest("[data-google-login]")) { loginWithGoogleAccount(); return; }
     const postTarget = event.target.closest("[data-post]");
     if (postTarget) { state.selectedPost = Number(postTarget.dataset.post); state.replyTarget = null; location.hash = "post"; return; }
@@ -1550,19 +1556,13 @@ function initializeRouter() {
 
 
 // Source: js/app.js
+// UI 확인용: 실제 계정이나 서버에 연결하지 않습니다.
+state.authUser = { id: "ui-preview", email: "preview@example.invalid", user_metadata: { display_name: "미리보기" } };
+state.profile = { display_name: "미리보기", region: "서울", birth_year: 2000 };
+state.authLoading = false;
+state.authRecovery = false;
+state.guestMode = false;
+state.route = location.hash.slice(1) || "home";
 registerEventHandlers();
 initializeRouter();
-
-Promise.all([
-  loadPolicies({ renderUpdates: false }),
-  loadCommunity({ renderUpdates: false }),
-  initializeAuth({ renderUpdates: false }),
-  document.fonts ? document.fonts.load('20px "Material Symbols Rounded"') : Promise.resolve()
-]).finally(() => render());
-
-const refreshCommunityNotifications = () => {
-  if (document.hidden || !state.authUser || !["home", "community", "profile", "notifications"].includes(state.route)) return;
-  loadCommunity({ renderUpdates: false }).then(render).catch((error) => console.error("커뮤니티 알림 갱신 실패", error));
-};
-document.addEventListener("visibilitychange", refreshCommunityNotifications);
-setInterval(refreshCommunityNotifications, 60000);
+render();
