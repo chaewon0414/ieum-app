@@ -176,6 +176,22 @@ const setLocalSession = (user, event) => {
   return session;
 };
 
+// 로그인 없이 바로 쓰도록 기본 사용자를 자동으로 만들고 로그인합니다.
+// 이름·지역·나이는 mock-data.js의 APP_DATA.user 값이며, 앱의 '맞춤 정보 관리'에서 바꿀 수 있어요.
+function ensureDefaultLocalUser() {
+  if (currentLocalSession()) return;
+  const db = readLocalDb();
+  let user = db.users.find((item) => item.id === "local-default");
+  if (!user) {
+    const info = APP_DATA.user || {};
+    user = { id: "local-default", email: "me@ieum.local", password: null, user_metadata: { display_name: info.name || "이음 사용자" }, created_at: new Date().toISOString() };
+    db.users.push(user);
+    (db.tables.profiles ||= []).push({ id: user.id, display_name: info.name || "이음 사용자", region: info.region || "서울", birth_year: new Date().getFullYear() - (info.age || 25) + 1, avatar_url: null });
+    writeLocalDb(db);
+  }
+  localStorage.setItem(LOCAL_SESSION_KEY, JSON.stringify({ access_token: "local", user: publicUser(user) }));
+}
+
 function createLocalClient() {
   return {
     from: (table) => new LocalQuery(table),
@@ -198,7 +214,7 @@ function createLocalClient() {
         const session = setLocalSession(user, "SIGNED_IN");
         return { data: { user: session.user, session }, error: null };
       },
-      async getSession() { return { data: { session: currentLocalSession() }, error: null }; },
+      async getSession() { ensureDefaultLocalUser(); return { data: { session: currentLocalSession() }, error: null }; },
       async getUser() { const session = currentLocalSession(); return { data: { user: session?.user || null }, error: session ? null : new Error("로그인이 필요합니다.") }; },
       async signOut() { setLocalSession(null, "SIGNED_OUT"); return { error: null }; },
       async updateUser({ data, password }) {
