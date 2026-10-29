@@ -5,17 +5,20 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 20
 
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: 17
@@ -37,7 +40,19 @@ jobs:
           ./gradlew assembleDebug
 
       - name: Upload APK
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: ieum-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Rename APK
+        run: cp android/app/build/outputs/apk/debug/app-debug.apk ieum-${{ github.run_number }}.apk
+
+      - name: Publish to Releases (phone download)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: 이음 테스트 빌드 ${{ github.run_number }}
+          body: 휴대폰에서 아래 .apk 파일을 눌러 받은 뒤 설치하세요. (출처를 알 수 없는 앱 허용 필요)
+          files: ieum-${{ github.run_number }}.apk
+          make_latest: true

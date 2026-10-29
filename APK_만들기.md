@@ -6,8 +6,8 @@
    - `.github` 폴더가 꼭 같이 올라가야 합니다. (숨김 폴더라 안 보이면 숨김 파일 표시를 켜세요)
 3. 저장소 상단 **Actions** 탭 > "Build APK" 가 자동으로 실행됩니다. (5~10분)
    - 자동으로 안 돌면 Build APK 선택 > Run workflow
-4. 완료(초록 체크)되면 실행 기록을 눌러 아래 **Artifacts > ieum-apk** 를 내려받습니다.
-5. zip을 풀면 `app-debug.apk` 가 있습니다. 휴대폰으로 옮겨 설치하세요.
+4. 완료(초록 체크)되면 휴대폰으로 저장소의 **Releases**(github.com/chaewon0414/ieum-app/releases/latest)에 들어가 `.apk` 파일을 눌러 받습니다.
+5. 받은 파일을 열어 설치하세요.
    (설치할 때 "출처를 알 수 없는 앱" 허용 필요)
 
 ## 앱을 고친 뒤
