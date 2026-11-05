@@ -1,5 +1,5 @@
 /* policies */
-.chips.policy-filters { display: grid; grid-template-columns: repeat(4, 1fr); width: 100%; gap: 8px; overflow: visible; }
+.chips.policy-filters { display: grid; grid-template-columns: repeat(5, 1fr); width: 100%; gap: 7px; overflow: visible; }
 .chips.policy-filters .chip { min-width: 0; padding-inline: 4px; text-align: center; }
 .policy-search { display: flex; align-items: center; gap: 9px; height: 52px; margin-bottom: 13px; padding: 0 8px 0 15px; border: 1px solid var(--line); border-radius: 17px; background: #fff; box-shadow: 0 4px 16px rgba(90,70,30,.05); }
 .policy-search > .material-symbols-rounded { flex: 0 0 auto; color: var(--muted); }
@@ -11,37 +11,23 @@
 .sort-options button { padding: 7px 10px; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); background: #fff; font-size: 11px; font-weight: 700; cursor: pointer; }
 .sort-options button.active { border-color: var(--primary); color: var(--primary-text); background: var(--primary-soft); }
 .policy-results { margin-top: 14px; }
-
-/* 카테고리 칩: 7개라 가로 스크롤 */
-.chips.policy-filters { display: flex; overflow-x: auto; scrollbar-width: none; }
-.chips.policy-filters::-webkit-scrollbar { display: none; }
-.chips.policy-filters .chip { flex: 0 0 auto; padding-inline: 15px; }
-
-/* 카테고리별 태그 색 */
-.tag.house { color: #8a5a1f; background: #fcefdc; }
-.tag.edu { color: #4d6a8f; background: #e8eff8; }
-.tag.job { color: #5d6b2e; background: #eef2dc; }
-.tag.health { color: #9a4b5c; background: #fbe9ec; }
-
-/* 공식 페이지 바로가기 */
-.policy-link { display: flex; align-items: center; justify-content: center; gap: 4px; margin-top: 12px; height: 40px; border-radius: 13px; color: var(--on-primary); background: var(--primary); font-size: 12.5px; font-weight: 800; text-decoration: none; }
-.policy-link .material-symbols-rounded { font-size: 16px; }
-.policy-link:active { transform: scale(.98); }
-
-/* 자세히 보기 */
-.policy-details { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); }
-.policy-details summary { display: inline-flex; align-items: center; gap: 2px; color: var(--primary-text); font-size: 12.5px; font-weight: 800; cursor: pointer; list-style: none; }
-.policy-details summary::-webkit-details-marker { display: none; }
-.policy-details summary .material-symbols-rounded { font-size: 18px; transition: transform .18s ease; }
-.policy-details[open] summary .material-symbols-rounded { transform: rotate(180deg); }
-.policy-details ul { margin: 10px 0 0; padding-left: 17px; color: var(--text); font-size: 12.5px; line-height: 1.65; }
-.policy-details li + li { margin-top: 4px; }
-.policy-details-foot { margin-top: 10px; }
-.policy-details-foot small { color: var(--muted); font-size: 10.5px; line-height: 1.4; }
-
-/* 저장한 정책 */
-.saved-empty { display: grid; justify-items: center; gap: 10px; padding: 34px 20px; text-align: center; }
-.saved-empty > .material-symbols-rounded { font-size: 34px; color: var(--primary-text); }
-.saved-empty p { margin: 0; color: var(--muted); line-height: 1.6; }
-.menu-count { margin-left: auto; margin-right: 4px; padding: 2px 8px; border-radius: 999px; color: var(--on-primary); background: var(--primary); font-size: 11px; }
-.menu-count + .material-symbols-rounded:last-child { margin-left: 0 !important; }
+.policy-admin-actions { display: flex; justify-content: flex-end; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+.policy-admin-actions button { display: inline-flex; align-items: center; gap: 5px; min-height: 36px; padding: 0 13px; border: 0; border-radius: 11px; color: #fff; background: var(--secondary); font-size: 12px; font-weight: 800; cursor: pointer; }
+.policy-admin-actions .material-symbols-rounded { font-size: 18px; }
+.policy-editor-card { overflow: hidden; }
+.policy-form { display: grid; gap: 18px; padding: 20px; }
+.policy-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 11px; }
+.policy-form-grid label { display: grid; gap: 7px; min-width: 0; }
+.policy-form-grid label > span { color: var(--text); font-size: 12px; font-weight: 800; }
+.policy-form-grid .wide { grid-column: 1 / -1; }
+.policy-form-grid input, .policy-form-grid select, .policy-form-grid textarea { width: 100%; min-height: 46px; padding: 11px 12px; border: 1px solid var(--line); border-radius: 13px; outline: none; color: var(--text); background: var(--surface); font: inherit; resize: vertical; }
+.policy-form-grid textarea { min-height: 92px; }
+.policy-form-grid .policy-content-input { min-height: 190px; }
+.policy-form-grid input:focus, .policy-form-grid select:focus, .policy-form-grid textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
+.policy-form-error { margin: 0; padding: 11px 13px; border-radius: 12px; color: #9e332f; background: #fff0ee; font-size: 12px; font-weight: 700; }
+.policy-submit { width: 100%; border: 0; color: #fff; background: var(--secondary); }
+@media (max-width: 380px) { .policy-form-grid { grid-template-columns: 1fr; } .policy-form-grid .wide { grid-column: auto; } }
+.saved-policies-empty { display: grid; justify-items: center; gap: 9px; padding: 34px 20px; text-align: center; }
+.saved-policies-empty > .material-symbols-rounded { color: var(--primary-text); font-size: 38px; }
+.saved-policies-empty .secondary-button { margin-top: 8px; }
+.menu-count { min-width: 23px; margin-left: auto; padding: 3px 7px; border-radius: 999px; color: var(--primary-text); background: var(--primary-soft); font-size: 11px; font-weight: 800; text-align: center; }

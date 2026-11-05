@@ -1,0 +1,5 @@
+import { APP_DATA } from "../data/mock-data.js";
+import { state } from "../core/state.js";
+import { icon } from "../core/utils.js";
+import { policyCard } from "../components/policy-card.js";
+export const writeView = () => `<div class="page"><header class="screen-head"><button class="screen-back" data-route="community" aria-label="커뮤니티로 돌아가기">${icon("arrow_back")}</button><div><h1>새 글 작성</h1><p>커뮤니티에 경험을 나눠주세요</p></div></header><section class="card write-screen"><form id="write-form" class="write-form"><label>카테고리<select name="category"><option>생활</option><option>취업</option><option>주거</option><option>관계</option><option>금융</option></select></label><label>제목<input name="title" maxlength="60" required placeholder="제목을 입력하세요"></label><label>내용<textarea name="body" maxlength="1000" required placeholder="서로에게 도움이 되는 이야기를 들려주세요"></textarea></label><button class="secondary-button" type="submit">게시하기</button></form></section></div>`;
