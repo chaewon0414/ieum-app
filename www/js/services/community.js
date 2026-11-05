@@ -32,9 +32,9 @@ function currentAuthor() {
   };
 }
 
-export async function saveCommunityPost({ category, title, body }) {
+export async function saveCommunityPost({ kind = "질문", category, title, body }) {
   const author = currentAuthor();
-  const created = await insertCommunityPost({ ...author, category, title, body });
+  const created = await insertCommunityPost({ ...author, kind, category, title, body });
   await loadCommunity({ renderUpdates: false });
   state.selectedPost = Math.max(0, state.posts.findIndex((post) => post.id === created.id));
   render();

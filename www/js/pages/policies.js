@@ -3,11 +3,11 @@ import { escapeHtml, icon } from "../core/utils.js";
 import { policyCard } from "../components/policy-card.js";
 
 export const policiesView = () => {
-  const categories = ["전체", "생활", "주거", "금융", "취업"];
+  const categories = ["전체", "생활", "주거", "금융", "교육", "취업", "건강"];
   const query = state.policySearch.trim().toLowerCase();
   let filtered = state.policies.filter((policy) =>
     (state.policyFilter === "전체" || policy.category === state.policyFilter)
-    && (!query || `${policy.title} ${policy.desc} ${policy.category}`.toLowerCase().includes(query))
+    && (!query || `${policy.title} ${policy.desc} ${policy.category} ${policy.content || ""} ${policy.region || ""}`.toLowerCase().includes(query))
   );
   if (state.policySort === "마감 임박순") filtered = [...filtered].reverse();
   const status = state.policiesLoading

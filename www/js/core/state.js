@@ -87,5 +87,5 @@ export const state = {
   notificationExpenseEnabled: false,
   notificationExpenseCandidates: [],
   notificationExpenseLoading: false,
-  chat: [{ type: "bot", text: "안녕하세요! 주거·생활·취업 정책 중 어떤 도움이 필요하세요?" }]
+  chat: [{ type: "bot", greeting: true, text: "" }]
 };

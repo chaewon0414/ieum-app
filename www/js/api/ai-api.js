@@ -1,10 +1,10 @@
 import { getSupabaseClient } from "./supabase-client.js";
 
-export async function fetchGeminiAnswer(messages) {
+export async function fetchGeminiAnswer(messages, userName = "") {
   const client = getSupabaseClient();
   if (!client) throw new Error("Supabase가 연결되지 않았습니다.");
 
-  const { data, error } = await client.functions.invoke("ai-chat", { body: { messages } });
+  const { data, error } = await client.functions.invoke("ai-chat", { body: { messages, userName } });
   if (error) {
     let detail = error.message || "Edge Function 호출 실패";
     try {

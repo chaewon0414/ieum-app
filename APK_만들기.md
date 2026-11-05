@@ -20,6 +20,9 @@
   나머지(약 22MB)를 지우면 APK 용량이 크게 줄어듭니다.
 
 
-## 현재 버전: 0.5.0
-- `www/js/` 안에 원본(파일별)과 `app.bundle.js`가 함께 있습니다. 원본을 고친 뒤에는 번들을 다시 만들어 올려 주세요.
-- Supabase 서버에 연결되는 버전입니다.
+
+## 현재 버전: 0.5.0 + 추가 수정
+- `www/js/` 안에 원본(파일별)과 `app.bundle.js`가 함께 있습니다.
+- 원본을 고친 뒤 번들 다시 만들기: `python3 tools/build-bundle.py www tools/build-bundle.ps1`
+  (또는 www 폴더에 build-bundle.ps1을 두고 PowerShell로 실행)
+- Supabase SQL Editor에서 `supabase/002_community_post_kind.sql`을 한 번 실행해야 게시판(질문/모임/꿀팁) 구분이 서버에 저장됩니다.

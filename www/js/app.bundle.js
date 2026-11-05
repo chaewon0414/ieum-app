@@ -3,18 +3,28 @@
 const APP_DATA = {
   user: { name: "지원", region: "서울시 관악구", age: 25 },
   policies: [
-    { category: "생활", title: "청년 자립수당", desc: "보호종료 청년의 안정적인 자립을 위해 매월 생활비를 지원해요.", amount: "월 50만 원", deadline: "상시 신청", match: 98 },
-    { category: "주거", title: "청년 월세 특별지원", desc: "주거비 부담을 덜 수 있도록 월세를 최대 12개월간 지원해요.", amount: "월 최대 20만 원", deadline: "8월 31일까지", match: 94 },
-    { category: "금융", title: "청년도약계좌", desc: "꾸준히 저축하면 정부 기여금과 비과세 혜택을 받을 수 있어요.", amount: "5년 만기", deadline: "매월 신청", match: 89 },
-    { category: "취업", title: "국민취업지원제도", desc: "취업 상담부터 직업훈련, 구직촉진수당까지 맞춤 지원해요.", amount: "월 최대 50만 원", deadline: "상시 신청", match: 86 }
+    {"builtIn": true, "category": "생활", "title": "자립수당", "desc": "보호가 끝난 뒤 5년 동안 매달 생활비를 받을 수 있어요. 보호종료일 기준으로 2년 이상 연속 보호받았다면 대상이에요.", "content": "대상: 아동복지시설·가정위탁 보호가 끝난 자립준비청년 중 보호종료일 기준 과거 2년 이상 연속 보호받은 사람\n지원: 월 50만 원, 보호종료 후 5년간\n신청: 주소지 행정복지센터 또는 복지로 온라인 신청\n문의: 보건복지부 청년정책팀 044-202-3361", "amount": "월 50만 원", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://www.bokjiro.go.kr", "source": "보건복지부 자립준비청년 자립지원 안내", "status": "published", "match": 98},
+    {"builtIn": true, "category": "생활", "title": "자립정착금", "desc": "보호가 끝날 때 시·도에서 한 번에 받는 정착 지원금이에요. 사는 지역에 따라 금액이 달라요.", "content": "대상: 만 18세 이후 보호가 끝난 자립준비청년\n지원(2025년 기준): 서울 2,000만 원 / 대전·경기·제주·경남 1,500만 원 / 부산 1,200만 원 / 그 외 지역 1,000만 원\n신청: 아동복지시설 또는 가정위탁지원센터와 사용계획서를 작성한 뒤 관할 행정복지센터에 신청\n금액은 해마다 바뀔 수 있으니 관할 시·군·구 공고를 꼭 확인하세요.", "amount": "1,000만~2,000만 원", "deadline": "상시 신청", "region": "시·도별", "applicationUrl": "https://www.mohw.go.kr/menu.es?mid=a10711041000", "source": "보건복지부 자립준비청년 자립지원 안내", "status": "published", "match": 96},
+    {"builtIn": true, "category": "생활", "title": "기초생활보장 근로소득 공제", "desc": "기초생활수급을 받으면서 일해도 소득 일부를 빼고 계산해 줘서, 일을 시작해도 급여가 크게 줄지 않아요.", "content": "대상: 기초생활보장 수급 자립준비청년(생계급여 수급 자격 완화 포함)\n지원: 소득 조사 때 근로·사업소득에서 60만 원 + 나머지 소득의 30%를 공제, 보호종료 후 5년간\n신청: 주소지 행정복지센터", "amount": "월 60만 원 + 30% 공제", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://www.mohw.go.kr/menu.es?mid=a10711041000", "source": "보건복지부 자립준비청년 자립지원 안내", "status": "published", "match": 88},
+    {"builtIn": true, "category": "생활", "title": "자립지원 통합서비스(사례관리)", "desc": "시·도 자립지원전담기관 담당자가 주거, 돈 관리, 진로, 건강 고민을 함께 살피고 필요한 지원을 연결해 줘요.", "content": "대상: 보호종료 5년 이내 자립준비청년, 보호연장아동\n지원: 1:1 맞춤형 사례관리, 필요한 서비스 연계\n신청: 거주 지역 시·도 자립지원전담기관", "amount": "1:1 맞춤 상담", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://jaripon.ncrc.or.kr", "source": "보건복지부 자립준비청년 자립지원 안내", "status": "published", "match": 90},
+    {"builtIn": true, "category": "생활", "title": "바람개비서포터즈·자조모임", "desc": "먼저 자립한 선배들과 만나고, 비슷한 경험을 가진 청년들끼리 모임을 만들면 활동비를 지원받을 수 있어요.", "content": "대상: 만 29세 이하 보호연장아동 및 자립준비청년\n지원: 자립 멘토 활동(바람개비서포터즈), 자조모임 운영과 활동비\n신청: 거주 지역 시·도 자립지원전담기관", "amount": "모임 활동비", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://jaripon.ncrc.or.kr", "source": "보건복지부 자립준비청년 자립지원 안내", "status": "published", "match": 80},
+    {"builtIn": true, "category": "주거", "title": "소년소녀가정 등 전세임대", "desc": "LH가 전셋집을 빌려 저렴하게 다시 빌려줘요. 22세까지는 무상이고, 보호종료 후 5년간 이자를 절반 깎아줘요.", "content": "대상: 자립준비청년, 청소년복지시설 퇴소청소년 등 무주택자(보호종료아동은 소득 기준 미적용)\n지원: 22세 이하 무상 지원, 보호종료 후 5년 이내 대출이율 50% 감면\n신청: 주소지 읍·면·동 주민센터\n문의: LH 전세임대콜센터 1670-0002", "amount": "22세까지 무상", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://apply.lh.or.kr", "source": "복지로 2025 복지서비스 안내책자(청년층)", "status": "published", "match": 95},
+    {"builtIn": true, "category": "주거", "title": "자립준비청년 전세임대(청년 전세임대 우선공급)", "desc": "청년 전세임대 물량 중 자립준비청년에게 먼저 공급해요. 지금 사는 곳과 상관없이 전국 주택에 신청할 수 있어요.", "content": "대상: 가정위탁 종료 또는 아동복지시설 퇴소 5년 이내인 사람, 보호연장아동\n지원: 지원한도액 수도권 1억 2,000만 원(청년 유형과 동일), 최장 6년 거주(조건 충족 시 최장 20년)\n신청: LH 청약플러스 공고 확인", "amount": "수도권 최대 1억 2천만 원", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://apply.lh.or.kr", "source": "문화일보 LH 청년 전세임대 모집 기사", "status": "published", "match": 93},
+    {"builtIn": true, "category": "주거", "title": "부산도시공사 자립준비청년 매입임대주택", "desc": "보증금 100만 원, 월세는 시세의 20% 수준으로 살 수 있는 집이에요. 모집 세대가 다 찰 때까지 수시로 접수해요.", "content": "대상: 아동복지시설 퇴소 5년 이내 무주택자(공고일 기준 공사 매입임대주택에 살고 있지 않은 사람)\n지원: 임대보증금 100만 원, 월 임대료 시세 20% 수준, 최초 2년(재계약 시 최장 10년, 소득·자산 기준 충족 시 최장 20년)\n신청: 부산도시공사 누리집 공고문 확인", "amount": "보증금 100만 원", "deadline": "모집 마감 시까지", "region": "부산", "applicationUrl": "https://www.bmc.busan.kr", "source": "파이낸셜뉴스 2026.7.22 부산도시공사 수시모집 기사", "status": "published", "match": 84},
+    {"builtIn": true, "category": "금융", "title": "디딤씨앗통장", "desc": "보호받는 동안 저축하면 나라가 2배를 더 넣어줘요. 모은 돈은 18세 이후 자립 초기 비용으로 받아요.", "content": "대상: 0세~만 18세 미만 보호대상아동\n지원: 매월 저축액을 국가(지자체)가 1:2로 매칭, 정부지원금 월 10만 원 한도\n지급: 18세 이후 사회진출 초기 비용으로 사용\n자세한 내용: 아동권리보장원 누리집", "amount": "월 최대 10만 원 매칭", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://www.ncrc.or.kr", "source": "보건복지부 자립준비청년 자립지원 안내", "status": "published", "match": 85},
+    {"builtIn": true, "category": "금융", "title": "학자금대출 생활비 이자 면제", "desc": "대학생이 취업 후 상환 학자금대출로 생활비를 빌리면, 갚기 시작하기 전까지 이자를 내지 않아도 돼요.", "content": "대상: 취업 후 상환 학자금대출을 받는 자립준비청년(보호아동 포함) 학부생, 만 35세 이하\n지원: 의무상환 개시 전까지 생활비 대출 이자 면제\n신청: 한국장학재단 누리집 또는 모바일 앱\n문의: 한국장학재단 1599-2000", "amount": "생활비 대출 이자 0원", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://www.kosaf.go.kr", "source": "복지로 2025 복지서비스 안내책자(청년층)", "status": "published", "match": 82},
+    {"builtIn": true, "category": "교육", "title": "국가장학금 성적기준 미적용", "desc": "자립준비청년은 국가장학금 Ⅰ유형을 받을 때 성적 기준을 보지 않아요. 학자금지원 9구간 이하면 신청할 수 있어요.", "content": "대상: 국내 대학 재학생 중 학자금지원 9구간 이하\n특례: 자립준비청년은 Ⅰ유형·다자녀 국가장학금 성적 기준 미적용\n신청: 한국장학재단 누리집 및 모바일 앱(학기별 신청 기간 확인)\n문의: 한국장학재단 1599-2000", "amount": "등록금 지원", "deadline": "학기별 신청 기간", "region": "전국", "applicationUrl": "https://www.kosaf.go.kr", "source": "복지로 2025 복지서비스 안내책자(청년층)", "status": "published", "match": 87},
+    {"builtIn": true, "category": "건강", "title": "자립준비청년 의료비 지원", "desc": "건강보험으로 병원에 갈 때 내는 본인부담금을 의료급여 수준으로 줄여줘요.", "content": "대상: 건강보험에 가입한 자립준비청년\n지원: 요양급여비용 본인일부부담금 경감(의료급여와 비슷한 수준)\n문의: 보건복지부 청년정책팀 044-202-3361", "amount": "병원비 본인부담 경감", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://www.mohw.go.kr/menu.es?mid=a10711041000", "source": "보건복지부 자립준비청년 자립지원 안내", "status": "published", "match": 91},
+    {"builtIn": true, "category": "건강", "title": "마음투자 심리상담 본인부담 면제", "desc": "전국민 마음투자 지원사업으로 심리상담을 받을 때 자립준비청년은 본인부담금 없이 이용할 수 있어요.", "content": "대상: 자립준비청년, 보호연장아동\n지원: 전국민 마음투자 지원사업 참여 시 본인부담금 제외\n신청: 복지로 온라인 신청", "amount": "상담비 본인부담 0원", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://www.bokjiro.go.kr", "source": "보건복지부 자립준비청년 자립지원 안내", "status": "published", "match": 86},
+    {"builtIn": true, "category": "취업", "title": "국민취업지원제도", "desc": "취업 상담, 직업훈련, 일자리 소개를 받고 조건이 맞으면 구직촉진수당도 받을 수 있어요. 청년 누구나 확인해 볼 만한 제도예요.", "content": "대상: 취업을 원하는 청년 등(유형별 소득·재산 기준 있음)\n지원: 취업지원 서비스, 1유형은 구직촉진수당(6개월)\n신청: 고용24 또는 가까운 고용센터\n자립준비청년 전용 제도는 아니니 자격은 고용24에서 확인하세요.", "amount": "구직촉진수당 + 취업지원", "deadline": "상시 신청", "region": "전국", "applicationUrl": "https://www.work24.go.kr", "source": "고용노동부 고용24", "status": "published", "match": 83}
   ],
   jobs: [
     { company: "카카오", title: "서비스 기획 어시스턴트 모집", tags: ["신입", "판교", "기획"], deadline: "D-12" },
     { company: "네이버", title: "UX/UI 디자인 체험형 인턴", tags: ["인턴", "분당", "디자인"], deadline: "D-18" }
   ],
   posts: [
-    { author: "취준하는 민지", time: "12분 전", category: "취업", title: "첫 면접을 앞두고 있는데 이것만은 꼭 준비하세요", body: "지난주 모의 면접에서 받은 피드백을 정리해봤어요. 답변을 외우기보다 경험을 상황-행동-결과로 나누니 훨씬 자연스러웠습니다.", likes: 42, comments: 13 },
-    { author: "자립 2년 차", time: "1시간 전", category: "생활", title: "한 달 생활비를 줄여준 작은 습관들", body: "고정비를 먼저 분리하고 남은 금액을 주 단위로 나눠 쓰니 월말이 훨씬 편해졌어요. 저만의 예산표도 공유해요.", image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=300&q=80", likes: 87, comments: 26 }
+    { kind: "질문", author: "취준하는 민지", time: "12분 전", category: "취업", title: "첫 면접을 앞두고 있는데 이것만은 꼭 준비하세요", body: "지난주 모의 면접에서 받은 피드백을 정리해봤어요. 답변을 외우기보다 경험을 상황-행동-결과로 나누니 훨씬 자연스러웠습니다.", likes: 42, comments: 13 },
+    { kind: "꿀팁", author: "자립 2년 차", time: "1시간 전", category: "생활", title: "한 달 생활비를 줄여준 작은 습관들", body: "고정비를 먼저 분리하고 남은 금액을 주 단위로 나눠 쓰니 월말이 훨씬 편해졌어요. 저만의 예산표도 공유해요.", image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=300&q=80", likes: 87, comments: 26 }
   ]
 };
 
@@ -148,7 +158,7 @@ async function fetchCommunityPosts() {
   if (!client) return null;
 
   const [{ data: posts, error: postsError }, { data: comments, error: commentsError }, { data: likes, error: likesError }] = await Promise.all([
-    client.from("community_posts").select("id,author_id,author_name,category,title,body,image_url,created_at").eq("status", "published").order("created_at", { ascending: false }),
+    client.from("community_posts").select("*").eq("status", "published").order("created_at", { ascending: false }),
     client.from("community_comments").select("id,post_id,parent_id,author_id,author_name,body,created_at").eq("status", "published").order("created_at", { ascending: true }),
     client.from("community_post_likes").select("post_id,user_id")
   ]);
@@ -165,6 +175,7 @@ async function fetchCommunityPosts() {
       authorId: post.author_id,
       author: post.author_name,
       time: relativeTime(post.created_at),
+      kind: post.kind || "질문",
       category: post.category,
       title: post.title,
       body: post.body,
@@ -192,22 +203,19 @@ async function fetchCommunityPosts() {
   });
 }
 
-async function insertCommunityPost({ userId, authorName, category, title, body }) {
+async function insertCommunityPost({ userId, authorName, kind = "질문", category, title, body }) {
   const client = getSupabaseClient();
   if (!client) throw new Error("Supabase가 연결되지 않았습니다.");
 
-  const { data, error } = await client
-    .from("community_posts")
-    .insert({
-      author_id: userId,
-      author_name: authorName,
-      category,
-      title,
-      body,
-      status: "published"
-    })
-    .select("id")
-    .single();
+  const row = { author_id: userId, author_name: authorName, kind, category, title, body, status: "published" };
+  let { data, error } = await client.from("community_posts").insert(row).select("id").single();
+
+  // 서버 테이블에 kind 칸이 아직 없으면(SQL 미실행) kind 없이 저장합니다. 이 경우 글은 '질문'으로 보입니다.
+  if (error && /kind/.test(`${error.message} ${error.details || ""}`)) {
+    console.warn("community_posts.kind 컬럼이 없어 게시판 구분 없이 저장합니다. supabase/002_community_post_kind.sql을 실행하세요.");
+    const { kind: _omit, ...withoutKind } = row;
+    ({ data, error } = await client.from("community_posts").insert(withoutKind).select("id").single());
+  }
 
   if (error) throw error;
   return data;
@@ -442,11 +450,11 @@ async function upsertUserIncome({ userId, monthlyIncome, incomeStatus }) {
 
 // Source: js/api/ai-api.js
 
-async function fetchGeminiAnswer(messages) {
+async function fetchGeminiAnswer(messages, userName = "") {
   const client = getSupabaseClient();
   if (!client) throw new Error("Supabase가 연결되지 않았습니다.");
 
-  const { data, error } = await client.functions.invoke("ai-chat", { body: { messages } });
+  const { data, error } = await client.functions.invoke("ai-chat", { body: { messages, userName } });
   if (error) {
     let detail = error.message || "Edge Function 호출 실패";
     try {
@@ -585,7 +593,7 @@ const state = {
   notificationExpenseEnabled: false,
   notificationExpenseCandidates: [],
   notificationExpenseLoading: false,
-  chat: [{ type: "bot", text: "안녕하세요! 주거·생활·취업 정책 중 어떤 도움이 필요하세요?" }]
+  chat: [{ type: "bot", greeting: true, text: "" }]
 };
 
 
@@ -610,14 +618,27 @@ const showToast = (message) => {
 
 
 // Source: js/components/policy-card.js
+const LINK_NAMES = [["bokjiro", "복지로"], ["jaripon", "자립정보ON"], ["ncrc", "아동권리보장원"], ["mohw", "보건복지부"], ["lh.or.kr", "LH 청약플러스"], ["kosaf", "한국장학재단"], ["work24", "고용24"], ["bmc.busan", "부산도시공사"], ["gov.kr", "정부24"], ["youthcenter", "온통청년"]];
+const linkName = (url = "") => (LINK_NAMES.find(([key]) => url.includes(key)) || [null, "공식 페이지"])[1];
+const CATEGORY_TAG = { 생활: "", 주거: "house", 금융: "gold", 교육: "edu", 취업: "job", 건강: "health" };
+
 function policyCard(policy, index, result = false) {
   const saveKey = String(policy.id || policy.title);
+  const region = policy.region && policy.region !== "전국" ? `<span>${icon("location_on")} ${escapeHtml(policy.region)}</span>` : "";
+  const link = !result && policy.applicationUrl ? `<a class="policy-link" href="${escapeHtml(policy.applicationUrl)}" target="_blank" rel="noopener">${escapeHtml(linkName(policy.applicationUrl))}에서 확인하기 ${icon("open_in_new")}</a>` : "";
+  const details = !result && policy.content ? `<details class="policy-details">
+      <summary>자세히 보기 ${icon("expand_more")}</summary>
+      <ul>${String(policy.content).split("\n").filter(Boolean).map((line) => `<li>${escapeHtml(line)}</li>`).join("")}</ul>
+      ${policy.source ? `<div class="policy-details-foot"><small>출처: ${escapeHtml(policy.source)}</small></div>` : ""}
+    </details>` : "";
   return `<article class="card ${result ? "result-card" : "policy-card"} ${result && index === 2 ? "featured" : ""}">
-    <div class="card-top"><div><span class="tag ${policy.category === "금융" ? "gold" : ""}">${escapeHtml(policy.category)}${state.isAdmin && policy.status !== "published" ? ` · ${escapeHtml(policy.status === "draft" ? "임시저장" : "종료")}` : ""}</span><h3>${escapeHtml(policy.title)}</h3></div>
+    <div class="card-top"><div><span class="tag ${CATEGORY_TAG[policy.category] || ""}">${escapeHtml(policy.category)}${state.isAdmin && policy.status !== "published" ? ` · ${escapeHtml(policy.status === "draft" ? "임시저장" : "종료")}` : ""}</span><h3>${escapeHtml(policy.title)}</h3></div>
     <button class="bookmark ${state.saved.has(saveKey) ? "saved" : ""}" data-save="${escapeHtml(saveKey)}" aria-label="${escapeHtml(policy.title)} 저장">${icon("bookmark")}</button></div>
     <p class="subtext">${escapeHtml(policy.desc)}</p>
-    <div class="meta"><span>${icon("payments")} ${escapeHtml(policy.amount)}</span><span>${icon("event")} ${escapeHtml(policy.deadline)}</span>${result ? `<span>${icon("verified")} 매칭 ${policy.match}%</span>` : ""}</div>
-    ${state.isAdmin && !result ? `<div class="policy-admin-actions"><button type="button" data-edit-policy="${escapeHtml(policy.id)}">${icon("edit")} 수정</button></div>` : ""}
+    <div class="meta"><span>${icon("payments")} ${escapeHtml(policy.amount)}</span><span>${icon("event")} ${escapeHtml(policy.deadline)}</span>${region}${result ? `<span>${icon("verified")} 매칭 ${policy.match}%</span>` : ""}</div>
+    ${link}
+    ${details}
+    ${state.isAdmin && !result && policy.id ? `<div class="policy-admin-actions"><button type="button" data-edit-policy="${escapeHtml(policy.id)}">${icon("edit")} 수정</button></div>` : ""}
   </article>`;
 }
 
@@ -641,11 +662,11 @@ const homeView = () => { const accountName = state.profile?.display_name || stat
 // Source: js/pages/policies.js
 
 const policiesView = () => {
-  const categories = ["전체", "생활", "주거", "금융", "취업"];
+  const categories = ["전체", "생활", "주거", "금융", "교육", "취업", "건강"];
   const query = state.policySearch.trim().toLowerCase();
   let filtered = state.policies.filter((policy) =>
     (state.policyFilter === "전체" || policy.category === state.policyFilter)
-    && (!query || `${policy.title} ${policy.desc} ${policy.category}`.toLowerCase().includes(query))
+    && (!query || `${policy.title} ${policy.desc} ${policy.category} ${policy.content || ""} ${policy.region || ""}`.toLowerCase().includes(query))
   );
   if (state.policySort === "마감 임박순") filtered = [...filtered].reverse();
   const status = state.policiesLoading
@@ -884,12 +905,14 @@ const safeChatText = (text) => String(text).replace(/[&<>"']/g, (character) => (
 
 const chatView = () => {
   const nickname = state.profile?.display_name || state.authUser?.user_metadata?.display_name || state.authUser?.user_metadata?.name || "사용자";
-  return `<div class="page"><header class="screen-head"><button class="screen-back" data-route="home" aria-label="홈으로 돌아가기">${icon("arrow_back")}</button><div><h1>이음 AI</h1><p>${safeChatText(nickname)}님을 위한 청년 지원 상담</p></div></header><section class="chat-screen"><div id="chat-messages" class="chat-messages">${state.chat.map((message) => `<div class="chat-bubble ${message.type === "user" ? "user" : "bot"}">${safeChatText(message.text)}</div>`).join("")}${state.chatLoading ? `<div class="chat-bubble bot chat-thinking">답변을 생각하고 있어요...</div>` : ""}</div><div class="chat-controls"><form id="chat-form" class="chat-form"><input name="message" maxlength="2000" autocomplete="off" placeholder="궁금한 내용을 입력하세요" aria-label="AI에게 메시지 보내기" ${state.chatLoading ? "disabled" : ""}><button aria-label="전송" ${state.chatLoading ? "disabled" : ""}>${icon("send")}</button></form></div></section></div>`;
+  return `<div class="page"><header class="screen-head"><button class="screen-back" data-route="home" aria-label="홈으로 돌아가기">${icon("arrow_back")}</button><div><h1>이음 AI</h1><p>${safeChatText(nickname)}님을 위한 청년 지원 상담</p></div></header><section class="chat-screen"><div id="chat-messages" class="chat-messages">${state.chat.map((message) => `<div class="chat-bubble ${message.type === "user" ? "user" : "bot"}">${safeChatText(message.greeting ? chatGreetingText() : message.text)}</div>`).join("")}${state.chatLoading ? `<div class="chat-bubble bot chat-thinking">답변을 생각하고 있어요...</div>` : ""}</div><div class="chat-controls"><form id="chat-form" class="chat-form"><input name="message" maxlength="2000" autocomplete="off" placeholder="궁금한 내용을 입력하세요" aria-label="AI에게 메시지 보내기" ${state.chatLoading ? "disabled" : ""}><button aria-label="전송" ${state.chatLoading ? "disabled" : ""}>${icon("send")}</button></form></div></section></div>`;
 };
 
 
 // Source: js/pages/write.js
-const writeView = () => `<div class="page"><header class="screen-head"><button class="screen-back" data-route="community" aria-label="커뮤니티로 돌아가기">${icon("arrow_back")}</button><div><h1>새 글 작성</h1><p>커뮤니티에 경험을 나눠주세요</p></div></header><section class="card write-screen"><form id="write-form" class="write-form"><label>카테고리<select name="category"><option>생활</option><option>취업</option><option>주거</option><option>관계</option><option>금융</option></select></label><label>제목<input name="title" maxlength="60" required placeholder="제목을 입력하세요"></label><label>내용<textarea name="body" maxlength="1000" required placeholder="서로에게 도움이 되는 이야기를 들려주세요"></textarea></label><button class="secondary-button" type="submit">게시하기</button></form></section></div>`;
+const COMMUNITY_KINDS = ["질문", "모임", "꿀팁"];
+const COMMUNITY_CATEGORIES = ["생활", "취업", "주거", "관계", "금융"];
+const writeView = () => `<div class="page"><header class="screen-head"><button class="screen-back" data-route="community" aria-label="커뮤니티로 돌아가기">${icon("arrow_back")}</button><div><h1>새 글 작성</h1><p>올릴 게시판을 고르고 이야기를 나눠주세요</p></div></header><section class="card write-screen"><form id="write-form" class="write-form"><div class="write-kind" role="radiogroup" aria-label="게시판">${COMMUNITY_KINDS.map((kind) => `<label class="write-kind-option"><input type="radio" name="kind" value="${kind}" ${kind === state.communityKind ? "checked" : ""}><span>${kind}</span></label>`).join("")}</div><label>카테고리<select name="category">${COMMUNITY_CATEGORIES.map((category) => `<option ${category === state.communityFilter ? "selected" : ""}>${category}</option>`).join("")}</select></label><label>제목<input name="title" maxlength="60" required placeholder="제목을 입력하세요"></label><label>내용<textarea name="body" maxlength="1000" required placeholder="서로에게 도움이 되는 이야기를 들려주세요"></textarea></label><button class="secondary-button" type="submit">게시하기</button></form></section></div>`;
 
 
 // Source: js/pages/profile.js
@@ -1122,15 +1145,25 @@ function addChatMessage(text, type = "user") {
   scrollChatToBottom();
 }
 
+function currentUserName() {
+  return state.profile?.display_name || state.authUser?.user_metadata?.display_name || state.authUser?.user_metadata?.name || "";
+}
+
+function chatGreetingText() {
+  const name = currentUserName();
+  return `안녕하세요${name ? `, ${name}님` : ""}! 주거·생활·취업 정책 중 어떤 도움이 필요하세요?`;
+}
+
 async function sendChatMessage(question) {
   if (!state.authUser) throw new Error("로그인이 필요합니다.");
+  state.chat.forEach((message) => { if (message.greeting) message.text = chatGreetingText(); });
   state.chat.push({ text: question, type: "user" });
   state.chatLoading = true;
   render();
   scrollChatToBottom();
 
   try {
-    const answer = await fetchGeminiAnswer(state.chat);
+    const answer = await fetchGeminiAnswer(state.chat, currentUserName());
     state.chat.push({ text: answer, type: "bot" });
   } catch (error) {
     console.error("Gemini 채팅 실패", error);
@@ -1146,6 +1179,12 @@ async function sendChatMessage(question) {
 
 // Source: js/services/policies.js
 
+// 앱에 내장된 자립준비청년 정책을 Supabase 정책 뒤에 붙입니다. 같은 제목이 서버에 있으면 서버 것을 씁니다.
+function withBuiltInPolicies(policies) {
+  const titles = new Set(policies.map((policy) => policy.title));
+  return [...policies, ...APP_DATA.policies.filter((policy) => !titles.has(policy.title))];
+}
+
 async function loadPolicies({ renderUpdates = true } = {}) {
   if (!isSupabaseConfigured()) return;
 
@@ -1155,7 +1194,7 @@ async function loadPolicies({ renderUpdates = true } = {}) {
 
   try {
     const policies = await fetchPolicies({ includeUnpublished: state.isAdmin });
-    state.policies = policies || [];
+    state.policies = withBuiltInPolicies(policies || []);
     state.policyDataSource = "supabase";
   } catch (error) {
     console.error("정책 데이터를 불러오지 못했습니다.", error);
@@ -1206,9 +1245,9 @@ function currentAuthor() {
   };
 }
 
-async function saveCommunityPost({ category, title, body }) {
+async function saveCommunityPost({ kind = "질문", category, title, body }) {
   const author = currentAuthor();
-  const created = await insertCommunityPost({ ...author, category, title, body });
+  const created = await insertCommunityPost({ ...author, kind, category, title, body });
   await loadCommunity({ renderUpdates: false });
   state.selectedPost = Math.max(0, state.posts.findIndex((post) => post.id === created.id));
   render();
@@ -1731,7 +1770,7 @@ function registerEventHandlers() {  document.addEventListener("click", async (ev
     if (event.target.id === "comment-form") { event.preventDefault(); if (!state.authUser) { location.hash = "login"; showToast("로그인 후 댓글을 작성할 수 있어요"); return; } const input = event.target.elements.comment; const body = input.value.trim(); const post = state.posts[state.selectedPost] || state.posts[0]; if (!body || !post?.id) return; const button = event.target.querySelector("button"); button.disabled = true; try { await saveCommunityComment({ postId: post.id, body }); showToast("댓글을 등록했어요"); } catch (error) { console.error("댓글 저장 실패", error); button.disabled = false; showToast("댓글을 저장하지 못했어요"); } return; }
     if (event.target.id === "reply-form") { event.preventDefault(); if (!state.authUser) { location.hash = "login"; showToast("로그인 후 답글을 작성할 수 있어요"); return; } const body = event.target.elements.reply.value.trim(); const post = state.posts[state.selectedPost] || state.posts[0]; const comment = post?.commentList?.[Number(event.target.dataset.replyIndex)]; if (!body || !post?.id || !comment?.id) return; const button = event.target.querySelector("button"); button.disabled = true; try { await saveCommunityComment({ postId: post.id, parentId: comment.id, body }); showToast("답글을 등록했어요"); } catch (error) { console.error("답글 저장 실패", error); button.disabled = false; showToast("답글을 저장하지 못했어요"); } return; }
     if (event.target.id === "chat-form") { event.preventDefault(); if (!state.authUser) { location.hash = "login"; showToast("로그인 후 AI 상담을 이용할 수 있어요"); return; } if (state.chatLoading) return; const input = event.target.elements.message; const question = input.value.trim(); if (!question) return; input.value = ""; try { await sendChatMessage(question); } catch { showToast("AI 답변을 불러오지 못했어요"); } return; }
-    if (event.target.id === "write-form") { event.preventDefault(); if (!state.authUser) { location.hash = "login"; showToast("로그인 후 글을 작성할 수 있어요"); return; } const data = new FormData(event.target); const button = event.target.querySelector("button[type=submit]"); button.disabled = true; button.textContent = "게시 중..."; try { await saveCommunityPost({ category: data.get("category"), title: data.get("title").trim(), body: data.get("body").trim() }); location.hash = "community"; showToast("게시글을 등록했어요"); } catch (error) { console.error("게시글 저장 실패", error); button.disabled = false; button.textContent = "게시하기"; showToast("게시글을 저장하지 못했어요"); } return; }
+    if (event.target.id === "write-form") { event.preventDefault(); if (!state.authUser) { location.hash = "login"; showToast("로그인 후 글을 작성할 수 있어요"); return; } const data = new FormData(event.target); const button = event.target.querySelector("button[type=submit]"); button.disabled = true; button.textContent = "게시 중..."; try { const kind = data.get("kind") || state.communityKind; const category = data.get("category"); await saveCommunityPost({ kind, category, title: data.get("title").trim(), body: data.get("body").trim() }); state.communityKind = kind; state.communityFilter = category; location.hash = "community"; showToast("게시글을 등록했어요"); } catch (error) { console.error("게시글 저장 실패", error); button.disabled = false; button.textContent = "게시하기"; showToast("게시글을 저장하지 못했어요"); } return; }
     if (event.target.id === "policy-form") { event.preventDefault(); if (!state.isAdmin) { showToast("관리자 권한이 필요합니다."); location.hash = "policies"; return; } const data = new FormData(event.target); const minimumAge = data.get("minimumAge"); const maximumAge = data.get("maximumAge"); if (minimumAge && maximumAge && Number(minimumAge) > Number(maximumAge)) { state.policyFormError = "최소 나이는 최대 나이보다 클 수 없습니다."; render(); return; } state.policySubmitting = true; state.policyFormError = null; render(); try { const current = state.policies.find((item) => item.id === state.editingPolicyId); await saveSupportPolicy({ id: state.editingPolicyId, publishedAt: current?.publishedAt, title: data.get("title").trim(), category: data.get("category"), summary: data.get("summary").trim(), content: data.get("content").trim(), supportAmount: data.get("supportAmount").trim(), applicationStart: data.get("applicationStart"), applicationEnd: data.get("applicationEnd"), region: data.get("region").trim(), minimumAge, maximumAge, incomeCondition: data.get("incomeCondition").trim(), employmentCondition: data.get("employmentCondition").trim(), applicationUrl: data.get("applicationUrl").trim(), contact: data.get("contact").trim(), imageUrl: data.get("imageUrl").trim(), status: data.get("status") }); state.editingPolicyId = null; location.hash = "policies"; showToast(current ? "지원정책을 수정했어요" : "지원정책을 등록했어요"); } catch (error) { console.error("지원정책 저장 실패", error); state.policyFormError = error?.message || "지원정책을 저장하지 못했습니다."; } finally { state.policySubmitting = false; render(); } return; }
     if (event.target.id === "recommend-form") { event.preventDefault(); const data = new FormData(event.target); const age = Number(data.get("age")); if (age < 14 || age > 99) { showToast("나이는 14세부터 99세 사이로 입력해주세요"); return; } const displayName = data.get("displayName").trim(); const region = data.get("region").trim(); if (!displayName || !region) { showToast("이름과 거주지역을 입력해주세요"); return; } const button = event.target.querySelector("button[type=submit]"); button.disabled = true; try { await savePersonalInfo({ displayName, age, gender: data.get("gender"), region, income: data.get("salary").trim() }); showToast("내 정보를 저장했어요"); } catch (error) { console.error("내 정보 저장 실패", error); button.disabled = false; showToast("내 정보를 저장하지 못했어요"); } return; }
   });

@@ -1,7 +1,14 @@
 import { isSupabaseConfigured } from "../api/supabase-client.js";
 import { fetchPolicies, savePolicy } from "../api/policies-api.js";
 import { state } from "../core/state.js";
+import { APP_DATA } from "../data/mock-data.js";
 import { render } from "../core/render.js";
+
+// 앱에 내장된 자립준비청년 정책을 Supabase 정책 뒤에 붙입니다. 같은 제목이 서버에 있으면 서버 것을 씁니다.
+function withBuiltInPolicies(policies) {
+  const titles = new Set(policies.map((policy) => policy.title));
+  return [...policies, ...APP_DATA.policies.filter((policy) => !titles.has(policy.title))];
+}
 
 export async function loadPolicies({ renderUpdates = true } = {}) {
   if (!isSupabaseConfigured()) return;
@@ -12,7 +19,7 @@ export async function loadPolicies({ renderUpdates = true } = {}) {
 
   try {
     const policies = await fetchPolicies({ includeUnpublished: state.isAdmin });
-    state.policies = policies || [];
+    state.policies = withBuiltInPolicies(policies || []);
     state.policyDataSource = "supabase";
   } catch (error) {
     console.error("정책 데이터를 불러오지 못했습니다.", error);
